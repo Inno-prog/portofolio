@@ -1,0 +1,156 @@
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+
+  <!-- Blobs -->
+  <div class="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/6 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/6 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 w-full py-12">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- ── Colonne gauche ── -->
+      <div class="order-2 lg:order-1 space-y-10">
+
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-500/30 bg-green-500/8 text-green-400 text-sm font-medium">
+          <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Disponible pour des projets
+        </div>
+
+        <!-- Nom & titre -->
+        <div>
+          <p class="text-slate-500 text-sm uppercase tracking-[0.2em] mb-3 font-medium">Bonjour, je suis</p>
+          <h1 class="text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-4">
+            Innocent <span class="gradient-text">DEMBELE</span>
+          </h1>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-px bg-gradient-to-r from-primary to-secondary"></div>
+            <h2 class="text-slate-300 text-lg font-medium">Développeur Web & Mobile Full Stack</h2>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <p class="text-slate-400 text-base leading-relaxed max-w-lg">
+          Je conçois des applications web et mobiles modernes, performantes et élégantes —
+          <span class="text-slate-300 font-medium">du backend robuste au frontend soigné.</span>
+        </p>
+
+        <!-- Stats — cartes individuelles avec icônes -->
+        <div class="grid grid-cols-3 gap-4">
+          @for (stat of [
+            {value: '3+', label: 'Ans d\'exp.', icon: '🚀'},
+            {value: '20+', label: 'Projets', icon: '💼'},
+            {value: '100%', label: 'Satisfaction', icon: '⭐'}
+          ]; track stat.label) {
+            <div class="flex items-center gap-3 p-4 rounded-xl bg-white/3 border border-slate-800/60 hover:border-primary/30 transition-all duration-300">
+              <span class="text-2xl">{{ stat.icon }}</span>
+              <div>
+                <div class="text-2xl font-bold gradient-text mb-0.5">{{ stat.value }}</div>
+                <div class="text-slate-500 text-xs uppercase tracking-wider">{{ stat.label }}</div>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- CTA -->
+        <div class="flex flex-wrap gap-3">
+          <a routerLink="/projects"
+             class="flex items-center gap-2 px-6 py-3 rounded-xl bg-primary hover:bg-primary/80 text-white font-semibold
+                    transition-all duration-200 hover:scale-105 hover:shadow-xl hover:shadow-primary/25 text-sm">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            Voir mes projets
+          </a>
+          <a routerLink="/contact"
+             class="flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-700 text-slate-300
+                    hover:border-primary/60 hover:text-primary font-semibold transition-all duration-200 text-sm">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Me contacter
+          </a>
+          <a href="https://github.com/Inno-prog" target="_blank"
+             class="flex items-center gap-2 px-5 py-3 rounded-xl border border-slate-700 text-slate-400
+                    hover:border-slate-500 hover:text-white transition-all duration-200 text-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
+        <!-- Stack -->
+        <div>
+          <p class="text-slate-600 text-xs uppercase tracking-[0.15em] mb-3">Stack</p>
+          <div class="flex flex-wrap gap-2">
+            @for (tech of ['Angular', 'Spring Boot', 'Flutter', 'React Native', 'TypeScript', 'Java', 'PostgreSQL', 'Docker']; track tech) {
+              <span class="px-3 py-1 rounded-md bg-white/3 border border-slate-800/80 text-slate-400 text-xs
+                           hover:border-primary/40 hover:text-slate-200 transition-all duration-200 cursor-default">
+                {{ tech }}
+              </span>
+            }
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── Colonne droite : Photo ── -->
+      <div class="flex justify-center lg:justify-end order-1 lg:order-2">
+        <div class="relative">
+
+          <!-- Halo -->
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/15 to-secondary/15 blur-3xl scale-125 pointer-events-none"></div>
+
+          <!-- Anneau rotatif -->
+          <div class="absolute inset-[-16px] rounded-full border border-dashed border-primary/15 animate-spin pointer-events-none"
+               style="animation-duration:25s;"></div>
+
+          <!-- Photo -->
+          <div class="relative w-72 h-72 md:w-80 md:h-80 xl:w-[380px] xl:h-[380px] rounded-full
+                      ring-[3px] ring-primary/40 ring-offset-[6px] ring-offset-dark
+                      overflow-hidden shadow-2xl shadow-primary/15">
+            <img src="assets/photo.jpeg"
+                 alt="Innocent DEMBELE"
+                 class="w-full h-full object-cover object-top">
+          </div>
+
+          <!-- Badge nom -->
+          <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 whitespace-nowrap
+                      px-5 py-2.5 rounded-full bg-[#1a1a2e] border border-primary/30
+                      shadow-xl backdrop-blur-sm text-center">
+            <p class="text-white font-bold text-sm leading-tight">Innocent DEMBELE</p>
+            <p class="text-primary text-[11px]">@InnoCode</p>
+          </div>
+
+          <!-- Badge dispo -->
+          <div class="absolute top-6 -right-2 md:-right-6 px-3 py-1.5 rounded-full
+                      bg-[#0f1f0f] border border-green-500/30 shadow-lg">
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
+              <span class="text-green-400 text-xs font-medium">Disponible</span>
+            </div>
+          </div>
+
+          <!-- Badge exp -->
+          <div class="absolute top-1/2 -left-4 md:-left-8 -translate-y-1/2
+                      px-3 py-2.5 rounded-xl bg-[#1a1a2e] border border-slate-700 shadow-xl text-center">
+            <p class="text-2xl font-bold gradient-text">3+</p>
+            <p class="text-slate-500 text-[10px] leading-tight">ans<br>d'exp.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll -->
+    <div class="flex justify-center mt-16">
+      <div class="flex flex-col items-center gap-1.5 animate-bounce opacity-40">
+        <span class="text-slate-600 text-[11px] uppercase tracking-widest">Défiler</span>
+        <svg class="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>

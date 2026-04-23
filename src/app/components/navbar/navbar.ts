@@ -1,6 +1,7 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ScreenSizeService } from '../../services/screen-size.service';
 
 export interface NavItem {
   label: string;
@@ -21,6 +22,7 @@ export class Navbar {
   isScrolled = signal(false);
   isMenuOpen = signal(false);
   activeMobileMenu = signal<string | null>(null);
+  screenSize = inject(ScreenSizeService);
 
   navLinks: NavItem[] = [
     { label: 'Accueil', route: '/' },

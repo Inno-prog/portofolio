@@ -12,5 +12,6 @@
         "amazonQChatDisclaimer": false,
         "amazonQChatPairProgramming": true,
         "amazonQSelectDeveloperProfile": false
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

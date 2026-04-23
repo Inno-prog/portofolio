@@ -5,7 +5,9 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration=production",
     "watch": "ng build --watch --configuration development",
+    "lint": "npx ng lint || echo 'No lint config'",
     "test": "ng test"
   },
   "prettier": {

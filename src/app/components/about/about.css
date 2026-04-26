@@ -1,0 +1,108 @@
+/* ── Pages intérieures ── */
+.page-layout {
+  min-height: 100%;
+  background: #fff;
+  color: #222;
+  padding-top: 80px;
+}
+
+.page-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-height: calc(100vh - 80px);
+  border-top: 1px solid #e5e7eb;
+}
+
+.page-col {
+  padding: 2rem 2rem;
+  border-right: 1px solid #e5e7eb;
+}
+.page-col:last-child {
+  border-right: none;
+}
+
+.col-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.col-underline {
+  width: 2rem;
+  height: 3px;
+  background: #f97316;
+  margin-bottom: 1.5rem;
+}
+
+.col-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.col-text {
+  font-size: 0.875rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.col-label {
+  font-size: 0.875rem;
+  color: #111;
+  margin-bottom: 0.4rem;
+}
+
+.col-label span {
+  color: #f97316;
+}
+
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  border: 2px solid #f97316;
+  color: #f97316;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  transition: all 0.2s;
+  margin-top: 1rem;
+}
+.btn-cv:hover {
+  background: #f97316;
+  color: #fff;
+}
+
+.expertise-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+.expertise-item:last-child { border-bottom: none; }
+
+.expertise-icon {
+  font-size: 1.5rem;
+  color: #f97316;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.expertise-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.expertise-desc {
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 2px;
+}

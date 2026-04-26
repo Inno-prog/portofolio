@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="h-full">
 <head>
   <meta charset="utf-8">
   <title>InnoCode | Innocent DEMBELE — Développeur Web & Mobile</title>
@@ -9,30 +9,13 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* Prevent FOUC - hide content until Angular loads */
-    app-root { opacity: 0; }
+    app-root { opacity: 0; display: flex; flex-direction: column; height: 100%; }
     app-root.loaded { opacity: 1; transition: opacity 0.2s ease-in; }
-    /* Force mobile layout on small screens before JS loads */
-    @media (max-width: 1023px) {
-      body .lg\\:flex { display: none !important; }
-      body .lg\\:hidden { display: block !important; }
-    }
-    @media (min-width: 1024px) {
-      body .lg\\:flex { display: flex !important; }
-      body .lg\\:hidden { display: none !important; }
-    }
   </style>
-  <script>
-    // Force correct display before Angular loads
-    (function() {
-      var isMobile = window.innerWidth < 1024;
-      document.documentElement.classList.add(isMobile ? 'mobile' : 'desktop');
-    })();
-  </script>
 </head>
-<body>
+<body class="h-full">
   <app-root></app-root>
 </body>
 </html>

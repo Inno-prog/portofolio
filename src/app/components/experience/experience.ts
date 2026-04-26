@@ -1,27 +1,34 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PortfolioService } from '../../services/portfolio';
-import { Experience as ExperienceModel } from '../../models/portfolio.models';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })
-export class Experience implements OnInit {
-  experiences = signal<ExperienceModel[]>([]);
+export class Experience {
+  experiences = [
+    { poste: 'Développeur Full Stack', entreprise: 'Projet Personnel', periode: '2023 — Présent', desc: 'Développement d\'applications web et mobiles avec Angular, Spring Boot et Flutter.' },
+    { poste: 'Développeur Frontend', entreprise: 'Stage / Freelance', periode: '2022 — 2023', desc: 'Intégration d\'interfaces web responsives avec Angular et Tailwind CSS.' },
+  ];
 
-  constructor(private portfolioService: PortfolioService) {}
+  formations = [
+    { diplome: 'Licence 3 — Informatique (terminé)', etablissement: 'IBAM, Ouagadougou', annee: '2024 — 2025' },
+    { diplome: 'Licence 2 — Informatique', etablissement: 'IBAM, Ouagadougou', annee: '2023 — 2024' },
+    { diplome: 'Licence 1 — Informatique', etablissement: 'IBAM, Ouagadougou', annee: '2022 — 2023' },
+    { diplome: 'Baccalauréat Série D', etablissement: 'Petit Séminaire Saint Paul de Tionkuy', annee: '2021 — 2022' },
+  ];
 
-  ngOnInit() {
-    this.portfolioService.getExperiences().subscribe(e => this.experiences.set(e));
-  }
+  certifications = [
+    { titre: 'Angular Developer', organisme: 'Auto-formation & pratique' },
+    { titre: 'Spring Boot REST API', organisme: 'Auto-formation & pratique' },
+    { titre: 'Flutter Mobile Dev', organisme: 'Auto-formation & pratique' },
+  ];
 
-  formatDate(date: string): string {
-    const [year, month] = date.split('-');
-    const months = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
-    return `${months[parseInt(month) - 1]} ${year}`;
-  }
+  langues = [
+    { nom: 'Français', niveau: 'Natif', pct: '100%' },
+    { nom: 'Anglais', niveau: 'Intermédiaire', pct: '60%' },
+    { nom: 'Dioula', niveau: 'Natif', pct: '100%' },
+  ];
 }

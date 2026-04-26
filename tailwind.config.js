@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Poppins', 'Inter', 'sans-serif'],
       },
       colors: {
         primary: '#6C63FF',
@@ -12,6 +12,10 @@ module.exports = {
         dark: '#0F0F1A',
         darker: '#080812',
         card: '#1A1A2E',
+        brand: {
+          DEFAULT: '#F6C84C',
+          600: '#E0B43C',
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

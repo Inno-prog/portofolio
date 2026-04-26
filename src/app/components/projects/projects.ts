@@ -1,28 +1,26 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PortfolioService } from '../../services/portfolio';
-import { Project } from '../../models/portfolio.models';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })
-export class Projects implements OnInit {
-  projects = signal<Project[]>([]);
-  filter = signal<'all' | 'featured'>('all');
+export class Projects {
+  webProjects = [
+    { title: 'Portfolio Personnel', desc: 'Site portfolio développé avec Angular 20 , spring-boot et Tailwind CSS.', techs: ['Angular', 'TypeScript', 'Tailwind'], url: '' },
+    { title: 'App de suivi de prestations de maintenance informatique', desc: 'Application de suivi des maintenances informatiques', techs: ['Angular', 'Spring Boot', 'PostgreSQL'], url: '' },
+    { title: 'Appication de demandes de stages', desc: 'Plateforme de demande de stage.', techs: ['Next.js', 'Node.js', 'MySQL'], url: '' },
+  ];
 
-  constructor(private portfolioService: PortfolioService) {}
+  mobileProjects = [
+    { title: 'App Mobile Flutter', desc: 'Application mini-marcketplace', techs: ['Flutter', 'Dart', 'postgresql$'] },
+    { title: 'App de conversion de fichier', desc: 'Application de convertion de fichier de tout type.', techs: ['Flutter', 'Spring Boot',] },
+  ];
 
-  ngOnInit() {
-    this.portfolioService.getProjects().subscribe(p => this.projects.set(p));
-  }
-
-  get filteredProjects() {
-    return this.filter() === 'featured'
-      ? this.projects().filter(p => p.featured)
-      : this.projects();
-  }
+  otherProjects = [
+    { title: 'API REST Spring Boot', desc: 'API REST sécurisée avec Spring Security et JWT.', techs: ['Java', 'Spring Boot', 'JWT'] },
+    { title: 'Dashboard Analytics', desc: 'Tableau de bord avec graphiques et statistiques.', techs: ['Angular', 'Chart.js', 'TypeScript'] },
+  ];
 }

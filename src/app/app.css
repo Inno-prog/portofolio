@@ -8,7 +8,7 @@
   flex: 1;
 }
 
-/* Desktop : page hero tient en 1 écran */
+/* ── DESKTOP ── */
 @media (min-width: 768px) {
   .app-shell {
     height: 100vh;
@@ -17,5 +17,22 @@
   .app-main {
     overflow: hidden;
     min-height: 0;
+  }
+  .mobile-single-page {
+    display: none;
+  }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 767px) {
+  .app-shell {
+    height: auto;
+    overflow: visible;
+  }
+  .desktop-only {
+    display: none;
+  }
+  .mobile-single-page {
+    display: block;
   }
 }

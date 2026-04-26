@@ -1,7 +1,20 @@
 <div class="app-shell">
   <app-navbar />
-  <main class="app-main">
+
+  <!-- Desktop : router-outlet seul -->
+  <main class="app-main desktop-only">
     <router-outlet />
   </main>
+
+  <!-- Mobile : toutes les sections en une seule page -->
+  <div class="mobile-single-page">
+    <app-hero />
+    <app-about />
+    <app-projects />
+    <app-experience />
+    <app-services />
+    <app-contact />
+  </div>
+
   <app-footer />
 </div>

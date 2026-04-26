@@ -3,91 +3,25 @@
   height: 100%;
 }
 
-/* Realistic water simulation containers */
 .water-container {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0; left: 0;
+  width: 100%; height: 100%;
   z-index: 2;
   pointer-events: none;
 }
+.water-canvas { position: absolute; bottom: 0; height: 100%; display: block; }
+.water-left  { left: 0;  width: 50% !important; z-index: 3; }
+.water-right { right: 0; width: 50% !important; z-index: 3; }
 
-.water-canvas {
+.hero-bg-img {
   position: absolute;
-  bottom: 0;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: top center;
   display: block;
-}
-
-.water-left {
-  left: 0;
-  width: 50% !important;
-  z-index: 3;
-}
-
-.water-right {
-  right: 0;
-  width: 50% !important;
-  z-index: 3;
-}
-
-/* Pyramid text: top lines narrow, bottom lines wide. Apply using width constraints per section */
-.relative.z-20 .flex > * { width: 100%; }
-.relative.z-20 .flex > :nth-child(1) { max-width: 340px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(2) { max-width: 460px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(3) { max-width: 620px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(4) { max-width: 840px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(5) { max-width: 1060px; margin: 0 auto; }
-
-/* Realistic water simulation containers */
-.water-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
   pointer-events: none;
-}
-
-.water-canvas {
-  position: absolute;
-  bottom: 0;
-  height: 100%;
-  display: block;
-}
-
-.water-left {
-  left: 0;
-  width: 50% !important;
-  z-index: 3;
-}
-
-.water-right {
-  right: 0;
-  width: 50% !important;
-  z-index: 3;
-}
-
-.water-canvas {
-  position: absolute;
-  bottom: 0;
-  height: 100%;
-  display: block;
-}
-
-.water-left {
-  left: 0;
-  width: 50% !important;
-  z-index: 3;
-}
-
-.water-right {
-  right: 0;
-  width: 50% !important;
-  z-index: 3;
 }
 
 .gradient-text {
@@ -97,126 +31,49 @@
   background-clip: text;
 }
 
-/* Pyramid text: top lines narrow, bottom lines wide. Apply using width constraints per section */
-.relative.z-20 .flex > * { width: 100%; }
-.relative.z-20 .flex > :nth-child(1) { max-width: 340px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(2) { max-width: 460px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(3) { max-width: 620px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(4) { max-width: 840px; margin: 0 auto; }
-.relative.z-20 .flex > :nth-child(5) { max-width: 1060px; margin: 0 auto; }
-
-/* Ensure image is transformable for parallax */
-.hero-bg-img {
-  /* Full-bleed cover: image fills viewport while keeping head visible via object-position
-     Parallax will translate the element; do not pre-translate here. */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  object-position: top center; /* keep the head visible */
-  display: block;
-  pointer-events: none;
-  will-change: transform;
-  transform-origin: center center;
-}
-
-@keyframes fadeUp {
-  0%   { opacity: 0; transform: translateY(40px); filter: blur(10px); }
-  100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
-}
-
-.animate-fadeUp { animation: fadeUp 1s ease forwards; }
-
-.delay-1 { animation-delay: 0.2s; opacity: 0; }
-.delay-2 { animation-delay: 0.4s; opacity: 0; }
-.delay-3 { animation-delay: 0.6s; opacity: 0; }
-.delay-4 { animation-delay: 0.8s; opacity: 0; }
-.delay-5 { animation-delay: 1.0s; opacity: 0; }
-.delay-6 { animation-delay: 1.2s; opacity: 0; }
-
-.glow { text-shadow: 0 0 20px rgba(0,245,160,0.4); }
-
-/* Hero text styling */
-.hero-line {
-  color: #f3f4f6; /* soft off-white */
-  line-height: 1.05;
-  margin: 0 auto;
-}
-.hero-line.line-1 { font-size: 1.05rem; font-weight: 400; }
-.hero-line.line-2 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; }
-.hero-line.line-3 { font-size: 1.25rem; font-weight: 500; }
-.hero-line.line-4 { font-size: 1.05rem; font-weight: 400; }
-.hero-line.line-5 { font-size: 1.25rem; font-weight: 600; }
-
-/* Subtle gradient overlay on important words */
-.hero-line.line-2 { background: linear-gradient(90deg, rgba(246,200,76,1), rgba(224,180,60,1)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-
-.hero-motive { color: rgba(243,244,246,0.9); opacity: 0.95; margin: 4px 0; font-size: 0.95rem; }
-
-/* Add a gentle float to the whole text block for life */
-.relative.z-20 .flex { animation: floaty 6s ease-in-out infinite; }
-@keyframes floaty {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0); }
-}
-
-/* Flying / PowerPoint-like entrance animations */
-@keyframes flyFromTop {
-  0% { opacity: 0; transform: translateY(-40px) scale(0.98); filter: blur(6px); }
-  60% { opacity: 1; transform: translateY(6px) scale(1.01); filter: blur(0); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
 .fly-in { opacity: 0; }
 .fly-in-1 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 120ms; }
 .fly-in-2 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 300ms; }
 .fly-in-3 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 520ms; }
 .fly-in-4 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 760ms; }
 .fly-in-5 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 980ms; }
-.fly-in-6 { animation: flyFromTop 700ms cubic-bezier(.2,.9,.2,1) forwards; animation-delay: 1200ms; }
 
-/* Lower the whole hero content slightly down the viewport to create a pyramidal base */
-.hero-content { transform: translateY(8vh); }
-
-/* Mobile hero tweaks to match screenshot */
-@media (max-width: 420px) {
-  /* Darker overlay on mobile for better contrast */
-  section.relative .absolute[style] { background: rgba(10,10,20,0.72) !important; }
-
-  .hero-line.line-1 { font-size: 0.95rem; letter-spacing: 0.28em; }
-  .hero-line.line-2 { font-size: clamp(2.8rem, 12vw, 5.6rem); line-height: 0.95; }
-  .hero-line.line-3, .hero-line.line-4 { font-size: 1rem; }
-  .hero-line.line-5 { font-size: 1.15rem; }
-
-  .relative.z-20 .flex { gap: 6px; }
-  .hero-content { transform: translateY(6vh); padding-bottom: 18vh; }
-
-  /* push the following page card up to overlap the hero */
-  .page-card { margin-top: -36px; border-radius: 12px; box-shadow: 0 10px 30px rgba(6,7,18,0.06); }
-
-  /* ensure the hero image keeps the top portion visible */
-  .hero-bg-img { object-position: 14% top; }
+@keyframes flyFromTop {
+  0%   { opacity: 0; transform: translateY(-40px) scale(0.98); filter: blur(6px); }
+  60%  { opacity: 1; transform: translateY(6px) scale(1.01); filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 
-/* Ensure hero doesn't block page scrolling on small devices */
-@media (max-width: 640px) {
-  section.relative.overflow-hidden { min-height: auto !important; height: auto !important; }
-  .hero-bg-img { position: absolute; height: 68vh; min-height: 360px; }
+.hero-content { animation: floatSoft 6s ease-in-out infinite; }
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
-/* Make the next page section look like an overlapping white card on small screens */
-@media (max-width: 640px) {
-  .page-layout {
-    background: #fff;
-    border-radius: 12px 12px 0 0;
-    margin: -28px 12px 0 12px; /* pull up to overlap hero */
-    padding: 20px; 
-    box-shadow: 0 18px 40px rgba(6,7,18,0.08);
-    z-index: 30;
-    position: relative;
+.glow { text-shadow: 0 0 20px rgba(0,245,160,0.4); }
+
+/* ── MOBILE ── */
+@media (max-width: 767px) {
+  :host { height: auto; }
+
+  /* Section hero : hauteur auto, image cover sur toute la hauteur */
+  section.relative {
+    min-height: 100vh !important;
+    height: auto !important;
   }
-  .page-cols { display: block; }
+
+  /* Image plein écran, pas de hauteur fixe */
+  .hero-bg-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .hero-content {
+    transform: none;
+    padding-bottom: 3rem;
+  }
 }

@@ -5,3 +5,21 @@ nav {
   right: 0;
   z-index: 99999;
 }
+
+/* Mobile adjustments to match PWA screenshot */
+@media (max-width: 640px) {
+  nav { background: transparent !important; box-shadow: none !important; border-bottom: none !important; height: 64px !important; }
+  .nav-grid { padding-left: 1rem; padding-right: 1rem; }
+  .nav-left, .nav-right { gap: 0.6rem; }
+  /* hide text links, keep center avatar */
+  .nav-left button, .nav-right > button:not(.mobile-hamburger) { display: none; }
+  .nav-center { transform: translateY(6px); }
+  .nav-center img { border-radius: 50%; }
+  /* subtle hamburger */
+  .mobile-hamburger { display: inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:10px; background: white; box-shadow: 0 6px 14px rgba(15,23,42,0.06); border: 1px solid rgba(0,0,0,0.04); }
+}
+
+/* Desktop: hide hamburger */
+@media (min-width: 641px) {
+  .mobile-hamburger { display: none; }
+}

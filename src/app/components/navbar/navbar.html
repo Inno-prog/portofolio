@@ -25,8 +25,8 @@
     <!-- CENTRE : photo -->
     <button type="button" class="nav-center" (click)="handleClick({label:'Accueil', route:'/'} )"
             style="display:flex;align-items:center;justify-content:center;">
-      <div style="width:52px;height:52px;border-radius:50%;border:4px solid #00d9f5;overflow:hidden;box-shadow:0 2px 8px rgba(0,217,245,0.3);">
-        <img src="assets/photo.png" alt="Accueil" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+        <div style="width:52px;height:52px;border-radius:50%;border:4px solid #00d9f5;overflow:hidden;box-shadow:0 2px 8px rgba(0,217,245,0.3);">
+          <img src="assets/photo.png" alt="Accueil" style="width:100%;height:100%;object-fit:cover;object-position:top;">
       </div>
     </button>
 
@@ -40,14 +40,24 @@
       }
 
       <!-- Mobile hamburger (hidden on desktop, visible on small screens) -->
-      <button type="button" class="mobile-hamburger" aria-label="Menu">
-        <svg viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="0" y="1" width="24" height="2" rx="1" fill="#1f2937" opacity="0.9"/>
-          <rect x="0" y="8" width="24" height="2" rx="1" fill="#1f2937" opacity="0.9"/>
-          <rect x="0" y="15" width="24" height="2" rx="1" fill="#1f2937" opacity="0.9"/>
+        <button type="button" class="mobile-hamburger" aria-label="Menu" (click)="toggleMobile()">
+        <!-- Three thin stroked lines (not white) for a subtle hamburger -->
+        <svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <line x1="2" y1="3" x2="22" y2="3" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="2" y1="9" x2="22" y2="9" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="2" y1="15" x2="22" y2="15" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
         </svg>
       </button>
     </div>
 
   </div>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" *ngIf="mobileOpen">
+      <div class="mobile-menu-inner">
+        @for (link of leftLinks.concat(rightLinks); track link.label) {
+          <button type="button" (click)="handleClick(link)" class="mobile-menu-link">{{ link.label }}</button>
+        }
+      </div>
+    </div>
 </nav>

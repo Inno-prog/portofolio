@@ -201,6 +201,12 @@
   .hero-bg-img { object-position: 14% top; }
 }
 
+/* Ensure hero doesn't block page scrolling on small devices */
+@media (max-width: 640px) {
+  section.relative.overflow-hidden { min-height: auto !important; height: auto !important; }
+  .hero-bg-img { position: absolute; height: 68vh; min-height: 360px; }
+}
+
 /* Make the next page section look like an overlapping white card on small screens */
 @media (max-width: 640px) {
   .page-layout {

@@ -1,63 +1,59 @@
-<nav class="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-50" style="height:70px;">
-  <div class="max-w-6xl mx-auto px-8 h-full nav-grid" style="display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem;">
+<nav class="navbar">
+  <div class="nav-inner">
 
-    <!-- GAUCHE : badge + liens -->
-    <div class="nav-left" style="display:flex; align-items:center; gap:2rem;">
-      <!-- Badge Innocode -->
-      <div style="display:flex;align-items:center;gap:0.4rem;flex-shrink:0;">
-        <svg width="34" height="34" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- GAUCHE : badge + liens desktop -->
+    <div class="nav-left">
+      <div class="nav-brand" (click)="handleClick({label:'Accueil', route:'/'})">
+        <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="17" stroke="#00d9f5" stroke-width="2"/>
           <text x="18" y="14" text-anchor="middle" font-size="7" font-family="monospace" font-weight="bold" fill="#111">&lt;Inno</text>
           <text x="18" y="24" text-anchor="middle" font-size="7" font-family="monospace" font-weight="bold" fill="#00d9f5">Code/&gt;</text>
         </svg>
-        <span style="font-family:monospace;font-weight:700;font-size:0.8rem;color:#111;">InnoCode</span>
+        <span class="brand-text">InnoCode</span>
       </div>
-
-      <!-- Liens gauche -->
-      @for (link of leftLinks; track link.label) {
-        <button type="button" (click)="handleClick(link)"
-                class="text-gray-800 hover:text-orange-500 text-sm font-semibold transition-colors whitespace-nowrap">
-          {{ link.label }}
-        </button>
-      }
+      <div class="nav-links-left">
+        @for (link of leftLinks; track link.label) {
+          <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
+        }
+      </div>
     </div>
 
     <!-- CENTRE : photo -->
-    <button type="button" class="nav-center" (click)="handleClick({label:'Accueil', route:'/'} )"
-            style="display:flex;align-items:center;justify-content:center;">
-        <div style="width:52px;height:52px;border-radius:50%;border:4px solid #00d9f5;overflow:hidden;box-shadow:0 2px 8px rgba(0,217,245,0.3);">
-          <img src="assets/photo.png" alt="Accueil" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+    <button class="nav-photo" (click)="handleClick({label:'Accueil', route:'/'})">
+      <div class="photo-ring">
+        <img src="assets/photo.jpeg" alt="Accueil">
       </div>
     </button>
 
-    <!-- DROITE : liens -->
-    <div class="nav-right" style="display:flex; align-items:center; gap:2rem; justify-content:flex-end;">
-      @for (link of rightLinks; track link.label) {
-        <button type="button" (click)="handleClick(link)"
-                class="text-gray-800 hover:text-orange-500 text-sm font-semibold transition-colors whitespace-nowrap">
-          {{ link.label }}
-        </button>
-      }
-
-      <!-- Mobile hamburger (hidden on desktop, visible on small screens) -->
-        <button type="button" class="mobile-hamburger" aria-label="Menu" (click)="toggleMobile()">
-        <!-- Three thin stroked lines (not white) for a subtle hamburger -->
-        <svg viewBox="0 0 24 18" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="2" y1="3" x2="22" y2="3" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
-          <line x1="2" y1="9" x2="22" y2="9" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
-          <line x1="2" y1="15" x2="22" y2="15" stroke="#111827" stroke-width="1.6" stroke-linecap="round" />
-        </svg>
+    <!-- DROITE : liens desktop + hamburger mobile -->
+    <div class="nav-right">
+      <div class="nav-links-right">
+        @for (link of rightLinks; track link.label) {
+          <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
+        }
+      </div>
+      <!-- Hamburger mobile -->
+      <button class="hamburger" (click)="toggleMobile()" aria-label="Menu">
+        @if (!mobileOpen) {
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        } @else {
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6l12 12M6 18L18 6" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        }
       </button>
     </div>
 
   </div>
 
-    <!-- Mobile menu overlay -->
-    <div class="mobile-menu" *ngIf="mobileOpen">
-      <div class="mobile-menu-inner">
-        @for (link of leftLinks.concat(rightLinks); track link.label) {
-          <button type="button" (click)="handleClick(link)" class="mobile-menu-link">{{ link.label }}</button>
-        }
-      </div>
+  <!-- Menu mobile déroulant -->
+  @if (mobileOpen) {
+    <div class="mobile-menu">
+      @for (link of allLinks; track link.label) {
+        <button (click)="handleClick(link)" class="mobile-link">{{ link.label }}</button>
+      }
     </div>
+  }
 </nav>

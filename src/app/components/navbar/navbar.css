@@ -1,44 +1,129 @@
-nav {
+.navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99999;
+  top: 0; left: 0; right: 0;
+  z-index: 9999;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 
-/* Mobile adjustments to match PWA screenshot */
-@media (max-width: 640px) {
-  nav { background: transparent !important; box-shadow: none !important; border-bottom: none !important; height: 64px !important; }
-  .nav-grid { padding-left: 0.75rem; padding-right: 0.75rem; }
-  .nav-left, .nav-right { gap: 0.45rem; }
-  /* hide text links, keep center avatar */
-  .nav-left button, .nav-right > button:not(.mobile-hamburger) { display: none; }
-  .nav-center { transform: translateY(6px); }
-  .nav-center img { border-radius: 50%; }
-  /* subtle hamburger: smaller, no white box */
-  .mobile-hamburger { display: inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background: transparent; box-shadow: none; border: none; }
-  .mobile-hamburger svg { width:18px;height:14px; }
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  height: 64px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Desktop: hide hamburger */
-@media (min-width: 641px) {
-  .mobile-hamburger { display: none; }
-}
-
-/* Mobile menu overlay */
-.mobile-menu {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(180deg, rgba(6,7,18,0.02), rgba(255,255,255,0.98));
-  z-index: 99998;
+.nav-brand {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 14px;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  flex-shrink: 0;
 }
-.mobile-menu-inner { width: 100%; max-width: 420px; padding: 8px 16px; display:flex; flex-direction:column; gap:8px; }
-.mobile-menu-link { text-align:left; background:transparent; border:none; padding:12px 14px; border-radius:8px; font-weight:600; font-size:1rem; color:#0f172a; }
-.mobile-menu-link:hover { background: rgba(15,23,42,0.03); }
+.brand-text {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: #111;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+.nav-links-left, .nav-links-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: #f97316; }
+
+.nav-photo {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-ring {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid #00d9f5;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,217,245,0.25);
+}
+.photo-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-menu {
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1rem 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.mobile-link {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0.75rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  border-bottom: 1px solid #f3f4f6;
+  transition: color 0.15s;
+}
+.mobile-link:hover { color: #f97316; }
+.mobile-link:last-child { border-bottom: none; }
+
+@media (max-width: 767px) {
+  .nav-links-left, .nav-links-right { display: none; }
+  .hamburger { display: flex; }
+  .nav-inner { padding: 0 1rem; }
+  .brand-text { display: none; }
+}

@@ -16,7 +16,6 @@
   color: #222;
   margin-bottom: 3rem;
 }
-
 .orange { color: #f97316; }
 
 .services-grid {
@@ -34,12 +33,7 @@
   animation: floatCard 4s ease-in-out infinite;
   transition: box-shadow 0.25s;
 }
-
-.service-card:hover {
-  box-shadow: 0 8px 28px rgba(249,115,22,0.12);
-}
-
-/* Décalage du flottement pour chaque carte */
+.service-card:hover { box-shadow: 0 8px 28px rgba(249,115,22,0.12); }
 .service-card:nth-child(1) { animation-delay: 0s; }
 .service-card:nth-child(2) { animation-delay: 0.5s; }
 .service-card:nth-child(3) { animation-delay: 1s; }
@@ -47,7 +41,6 @@
 .service-card:nth-child(5) { animation-delay: 0.8s; }
 .service-card:nth-child(6) { animation-delay: 1.3s; }
 
-/* Icône qui dépasse en haut à gauche */
 .card-icon {
   position: absolute;
   top: -22px;
@@ -56,21 +49,20 @@
   padding: 2px 4px;
 }
 
-.card-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 0.6rem;
-  margin-top: 0.3rem;
-}
-
-.card-desc {
-  font-size: 0.85rem;
-  color: #666;
-  line-height: 1.6;
-}
+.card-title { font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 0.6rem; margin-top: 0.3rem; }
+.card-desc { font-size: 0.85rem; color: #666; line-height: 1.6; }
 
 @keyframes floatCard {
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50%       { transform: translateY(-8px); }
+}
+
+/* ── MOBILE ── */
+@media (max-width: 767px) {
+  .services-page { padding: 80px 1rem 2rem; }
+  .services-heading { font-size: 1.5rem; margin-bottom: 2rem; }
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem 0;
+  }
 }

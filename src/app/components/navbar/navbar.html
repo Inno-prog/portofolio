@@ -1,50 +1,108 @@
 <nav class="navbar">
   <div class="nav-inner">
 
-    <!-- GAUCHE : badge + liens desktop -->
-    <div class="nav-left">
-      <div class="nav-brand" (click)="handleClick({label:'Accueil', route:'/'})">
-        <svg width="32" height="32" viewBox="0 0 36 36" fill="none">
-          <circle cx="18" cy="18" r="17" stroke="#00d9f5" stroke-width="2"/>
-          <text x="18" y="14" text-anchor="middle" font-size="7" font-family="monospace" font-weight="bold" fill="#111">&lt;Inno</text>
-          <text x="18" y="24" text-anchor="middle" font-size="7" font-family="monospace" font-weight="bold" fill="#00d9f5">Code/&gt;</text>
-        </svg>
-        <span class="brand-text">InnoCode</span>
-      </div>
+    <!-- LOGO tout à gauche, seul -->
+    <div class="nav-brand" (click)="handleClick({label:'Accueil', route:'/'})">
+      <svg class="brand-logo" width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fff8e7"/>
+            <stop offset="30%" stop-color="#ffd84d"/>
+            <stop offset="75%" stop-color="#ff6600"/>
+            <stop offset="100%" stop-color="#cc2200"/>
+          </linearGradient>
+          <filter id="glo" x="-25%" y="-35%" width="150%" height="170%">
+            <feGaussianBlur stdDeviation="3.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="gloBig" x="-30%" y="-40%" width="160%" height="180%">
+            <feGaussianBlur stdDeviation="6" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Halo orange derrière -->
+        <ellipse cx="100" cy="34" rx="95" ry="26" fill="#ff4400" opacity="0.12" filter="url(#gloBig)"/>
+
+        <!-- Éclats gauche -->
+        <polygon points="2,30 14,10 12,32" fill="#ff6600" opacity="0.85"/>
+        <polygon points="0,34 13,50 10,28" fill="#cc3300" opacity="0.6"/>
+        <line x1="6" y1="18" x2="22" y2="22" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
+        <line x1="4" y1="44" x2="20" y2="41" stroke="#ff6600" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+
+        <!-- Éclats droite -->
+        <polygon points="198,30 186,10 188,32" fill="#ff6600" opacity="0.85"/>
+        <polygon points="200,34 187,50 190,28" fill="#cc3300" opacity="0.6"/>
+        <line x1="194" y1="18" x2="178" y2="22" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
+        <line x1="196" y1="44" x2="180" y2="41" stroke="#ff6600" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+
+        <!-- Ombre noire décalée -->
+        <text x="103" y="44"
+          text-anchor="middle"
+          font-family="'Permanent Marker', cursive"
+          font-size="34" fill="#000" stroke="#000" stroke-width="14"
+          stroke-linejoin="round"
+          transform="skewX(-7) translate(4,4)">InnoCode</text>
+
+        <!-- Contour orange vif -->
+        <text x="100" y="41"
+          text-anchor="middle"
+          font-family="'Permanent Marker', cursive"
+          font-size="34" fill="none" stroke="#ff4400" stroke-width="9"
+          stroke-linejoin="round"
+          transform="skewX(-7)">InnoCode</text>
+
+        <!-- Contour noir net -->
+        <text x="100" y="41"
+          text-anchor="middle"
+          font-family="'Permanent Marker', cursive"
+          font-size="34" fill="none" stroke="#000" stroke-width="3"
+          stroke-linejoin="round"
+          transform="skewX(-7)">InnoCode</text>
+
+        <!-- Texte dégradé final -->
+        <text x="100" y="41"
+          text-anchor="middle"
+          font-family="'Permanent Marker', cursive"
+          font-size="34" fill="url(#tg)"
+          transform="skewX(-7)"
+          filter="url(#glo)">InnoCode</text>
+      </svg>
+    </div>
+
+    <!-- CENTRE : liens gauche + photo + liens droite -->
+    <div class="nav-center">
       <div class="nav-links-left">
         @for (link of leftLinks; track link.label) {
           <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
         }
       </div>
-    </div>
 
-    <!-- CENTRE : photo -->
-    <button class="nav-photo" (click)="handleClick({label:'Accueil', route:'/'})">
-      <div class="photo-ring">
-        <img src="assets/photo.jpeg" alt="Accueil">
-      </div>
-    </button>
+      <button class="nav-photo" (click)="handleClick({label:'Accueil', route:'/'})">
+        <div class="photo-ring">
+          <img src="assets/photo.jpeg" alt="Accueil">
+        </div>
+      </button>
 
-    <!-- DROITE : liens desktop + hamburger mobile -->
-    <div class="nav-right">
       <div class="nav-links-right">
         @for (link of rightLinks; track link.label) {
           <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
         }
       </div>
-      <!-- Hamburger mobile -->
-      <button class="hamburger" (click)="toggleMobile()" aria-label="Menu">
-        @if (!mobileOpen) {
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M3 6h18M3 12h18M3 18h18" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        } @else {
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M6 6l12 12M6 18L18 6" stroke="#111" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        }
-      </button>
     </div>
+
+    <!-- Hamburger mobile -->
+    <button class="hamburger" (click)="toggleMobile()" aria-label="Menu">
+      @if (!mobileOpen) {
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      } @else {
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M6 6l12 12M6 18L18 6" stroke="#111" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      }
+    </button>
 
   </div>
 

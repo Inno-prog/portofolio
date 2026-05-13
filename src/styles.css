@@ -49,17 +49,242 @@ body {
   @apply py-20 px-6 md:px-12 lg:px-24;
 }
 
-/* Animation utilities */
-.anim-fade {
-  animation: fadeIn 0.6s ease-out both;
+/* Animation utilities for scroll-triggered effects */
+/* Each anim type has a base class (initial hidden state) and a show class (final visible state) */
+
+/* 1. Fade Up - classic smooth rise */
+.anim-fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.anim-slide-up {
-  animation: slideUp 0.6s ease-out both;
-}
-.anim-bounce {
-  animation: floaty 3s ease-in-out infinite;
+.anim-fade-up-show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
+/* 2. Fade Down - from above */
+.anim-fade-down {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-fade-down-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 3. Slide Right - from left */
+.anim-slide-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-slide-right-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 4. Slide Left - from right */
+.anim-slide-left {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-slide-left-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 5. Scale Up - subtle zoom from slightly smaller */
+.anim-scale-up {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-scale-up-show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 6. Blur In - blur removal effect */
+.anim-blur-in {
+  opacity: 0;
+  filter: blur(12px);
+  transform: scale(1.02);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-blur-in-show {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* 7. Rotate In - slight rotation from side */
+.anim-rotate-in {
+  opacity: 0;
+  transform: rotateX(15deg) translateY(20px);
+  transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-rotate-in-show {
+  opacity: 1;
+  transform: rotateX(0) translateY(0);
+}
+
+/* 8. Elastic/Bouncy - springy entrance */
+.anim-bounce-in {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.anim-bounce-in-show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 9. Fade In Place - simple opacity only */
+.anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+.anim-fade-in-show {
+  opacity: 1;
+}
+
+/* 10. Shimmer/Sweep - slide with slight blur */
+.anim-shimmer {
+  opacity: 0;
+  transform: translateX(-20px);
+  filter: blur(4px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.anim-shimmer-show {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+/* Stagger container animation variants */
+/* When a .stagger container receives its animation show class (e.g., anim-fade-up-show),
+   its .stagger-child children transition from hidden to visible */
+
+/* Fade Up stagger */
+.stagger.anim-fade-up .stagger-child,
+.stagger.anim-fade-up-show .stagger-child {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-fade-up-show .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade Down stagger */
+.stagger.anim-fade-down .stagger-child,
+.stagger.anim-fade-down-show .stagger-child {
+  opacity: 0;
+  transform: translateY(-30px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-fade-down-show .stagger-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide Right stagger (elements come from left) */
+.stagger.anim-slide-right .stagger-child,
+.stagger.anim-slide-right-show .stagger-child {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-slide-right-show .stagger-child {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide Left stagger (elements come from right) */
+.stagger.anim-slide-left .stagger-child,
+.stagger.anim-slide-left-show .stagger-child {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-slide-left-show .stagger-child {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale Up stagger */
+.stagger.anim-scale-up .stagger-child,
+.stagger.anim-scale-up-show .stagger-child {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-scale-up-show .stagger-child {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Blur In stagger */
+.stagger.anim-blur-in .stagger-child,
+.stagger.anim-blur-in-show .stagger-child {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(1.02);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-blur-in-show .stagger-child {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+/* Bounce In stagger */
+.stagger.anim-bounce-in .stagger-child,
+.stagger.anim-bounce-in-show .stagger-child {
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stagger.anim-bounce-in-show .stagger-child {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Shimmer stagger */
+.stagger.anim-shimmer .stagger-child,
+.stagger.anim-shimmer-show .stagger-child {
+  opacity: 0;
+  transform: translateX(-20px);
+  filter: blur(4px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stagger.anim-shimmer-show .stagger-child {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+/* Base fallback: if no specific anim-type class on stagger, use simple fade */
+.stagger .stagger-child {
+  opacity: 0;
+}
+.stagger.anim-fade-in-show .stagger-child,
+.stagger.anim-fade-up-show .stagger-child,
+.stagger.anim-fade-down-show .stagger-child,
+.stagger.anim-slide-right-show .stagger-child,
+.stagger.anim-slide-left-show .stagger-child,
+.stagger.anim-scale-up-show .stagger-child,
+.stagger.anim-blur-in-show .stagger-child,
+.stagger.anim-bounce-in-show .stagger-child,
+.stagger.anim-shimmer-show .stagger-child {
+  opacity: 1;
+}
+
+/* Keyframes for Tailwind custom animations (unchanged) */
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -74,4 +299,46 @@ body {
   0% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
   100% { transform: translateY(0); }
+}
+
+/* Continuous looping animations (always run, not scroll-triggered) */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes pulseSoft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.97); }
+}
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 8px rgba(249,115,22,0.3); }
+  50% { text-shadow: 0 0 20px rgba(249,115,22,0.6); }
+}
+@keyframes shimmerLoop {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Utility classes for continuous animations */
+.anim-float {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+.anim-pulse {
+  animation: pulseSoft 2.5s ease-in-out infinite;
+}
+.anim-glow {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+.anim-shimmer-loop {
+  background: linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmerLoop 2.5s linear infinite;
+}
+
+/* Legacy unused animation classes for backwards compatibility */
+.anim-slide-up {
+  animation: slideUp 0.6s ease-out both;
+}
+.anim-bounce {
+  animation: floaty 3s ease-in-out infinite;
 }

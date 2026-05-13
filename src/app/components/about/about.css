@@ -54,22 +54,14 @@
   padding: 0.8rem;
   border-bottom: 1px solid #e5e7eb;
   border-radius: 4px;
-  animation: floatCard 4s ease-in-out infinite;
   background: #fff;
+  transition: box-shadow 0.25s;
 }
-.expertise-item:last-child { border-bottom: none; }
-.expertise-item:nth-child(2) { animation-delay: 0.5s; }
-.expertise-item:nth-child(3) { animation-delay: 1s; }
-.expertise-item:nth-child(4) { animation-delay: 1.5s; }
+.expertise-item:hover { box-shadow: 0 4px 12px rgba(249,115,22,0.1); }
 
 .expertise-icon { font-size: 1.4rem; color: #f97316; flex-shrink: 0; }
 .expertise-title { font-size: 0.88rem; font-weight: 600; color: #111; }
 .expertise-desc { font-size: 0.78rem; color: #777; margin-top: 2px; }
-
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-5px); }
-}
 
 /* ── MOBILE ── */
 @media (max-width: 767px) {

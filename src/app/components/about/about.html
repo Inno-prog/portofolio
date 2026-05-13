@@ -2,9 +2,9 @@
   <div class="page-cols">
 
     <!-- Colonne 1 : Que suis-je -->
-    <div class="page-col">
-      <h2 class="col-title">Que suis Je ?</h2>
-      <div class="col-underline"></div>
+    <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Que suis Je ?</h2>
+      <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
       <p class="col-subtitle"> Développeur Full Stack et chercheur IA</p>
       <p class="col-text">
@@ -12,61 +12,63 @@
         Passionné par le développement web, mobile et le design.
       </p>
 
-      <button class="btn-cv" (click)="downloadCv()">
+      <button class="btn-cv anim-scale-up" [animateOnScroll]="'anim-scale-up-show'" (click)="downloadCv()">
         📎 Télécharger Mon CV
       </button>
 
       <div style="margin-top:2rem;">
         <h3 class="col-subtitle" style="margin-bottom:1rem;">Compétences</h3>
+      <div class="stagger anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
         @for (skill of skills; track skill.category) {
-          <div style="margin-bottom:0.8rem;">
+          <div class="stagger-child" style="margin-bottom:0.8rem;">
             <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#444;margin-bottom:4px;">
               <span>{{ skill.category }}</span>
             </div>
             <div style="background:#e5e7eb;border-radius:4px;height:6px;">
-              <div [style.width]="skill.level" style="background:#f97316;height:6px;border-radius:4px;"></div>
+              <div [style.width]="skill.level" class="anim-pulse" style="background:#f97316;height:6px;border-radius:4px;"></div>
             </div>
           </div>
         }
       </div>
+      </div>
     </div>
 
     <!-- Colonne 2 : Informations Personnelles -->
-    <div class="page-col">
-      <h2 class="col-title">Informations Personnelles</h2>
-      <div class="col-underline"></div>
+    <div class="page-col anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Informations Personnelles</h2>
+      <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
-      <div style="display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;">
-        <p class="col-label"><span>Nom complet</span> : DEMBELE Innocent</p>
-        <p class="col-label"><span>Nationalité</span> : Burkinabè</p>
-        <p class="col-label"><span>Email</span> : dembeleinnocent440&#64;gmail.com</p>
-        <p class="col-label"><span>Phone</span> : +226 06 01 31 65</p>
-        <p class="col-label"><span>Address</span> : Ouagadougou, Burkina Faso</p>
-        <p class="col-label"><span>Disponibilité</span> : Immédiate</p>
+      <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+        @for (info of personalInfo; track info.label) {
+          <p class="col-label stagger-child"><span>{{ info.label }}</span> : {{ info.value }}</p>
+        }
       </div>
 
-      <div style="display:flex;gap:0.8rem;margin-top:1rem;">
-        <a href="mailto:dembeleinnocent440@gmail.com" style="color:#f97316;font-size:1.3rem;">✉️</a>
-        <a href="https://wa.me/qr/UYCVF3ADDIURN1" target="_blank" style="color:#f97316;font-size:1.3rem;">💬</a>
-        <a href="https://www.linkedin.com/in/innocent-d-266b97302/" target="_blank" style="color:#f97316;font-size:1.3rem;">🔗</a>
-        <a href="https://github.com/Inno-prog" target="_blank" style="color:#f97316;font-size:1.3rem;">🐙</a>
+      <div class="stagger anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">
+        @for (social of socials; track social.label) {
+          <a [href]="social.url" target="_blank" class="stagger-child anim-pulse" style="display:flex;align-items:center;gap:0.8rem;color:#f97316;font-size:1.3rem;text-decoration:none;margin-top:0.5rem;">
+            {{ social.icon }}
+          </a>
+        }
       </div>
     </div>
 
     <!-- Colonne 3 : Mon Expertise -->
-    <div class="page-col">
-      <h2 class="col-title">Mon Expertise</h2>
-      <div class="col-underline"></div>
+    <div class="page-col anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Mon Expertise</h2>
+      <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
-      @for (exp of expertise; track exp.title) {
-        <div class="expertise-item">
-          <div class="expertise-icon">{{ exp.icon }}</div>
-          <div>
-            <div class="expertise-title">{{ exp.title }}</div>
-            <div class="expertise-desc">{{ exp.desc }}</div>
+      <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+        @for (exp of expertise; track exp.title) {
+          <div class="expertise-item stagger-child anim-float">
+            <div class="expertise-icon">{{ exp.icon }}</div>
+            <div>
+              <div class="expertise-title">{{ exp.title }}</div>
+              <div class="expertise-desc">{{ exp.desc }}</div>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
 
   </div>

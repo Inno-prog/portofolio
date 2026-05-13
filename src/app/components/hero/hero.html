@@ -7,7 +7,7 @@
   </div>
 
   <!-- Image fond : natural-size centered, don't upscale -->
-  <img data-hero-bg src="assets/photo.png" alt="" class="hero-bg-img z-0">
+  <img data-hero-bg src="assets/photo.png" alt="Innocent DEMBELE - Développeur Full Stack Angular, Spring Boot, Flutter" class="hero-bg-img z-0">
 
   <!-- Overlay sombre -->
   <div class="absolute inset-0 z-0 hero-overlay" style="background: rgba(10,10,20,0.65);"></div>
@@ -112,32 +112,22 @@
 
   <!-- TEXTES -->
   <div class="flex flex-col items-center gap-4 max-w-[1100px] px-4 hero-content">
-
-    <div class="fly-in fly-in-1">
-      <p class="hero-line line-1">bonjour je m'appelle</p>
-    </div>
-
-    <div class="fly-in fly-in-2">
-      <p class="hero-line line-2">DEMBELE Innocent.</p>
-    </div>
-
-    <div class="fly-in fly-in-3">
-      <p class="hero-line line-3">
-        je suis <span id="typingWord"></span>
-      </p>
-    </div>
-
-    <div class="fly-in fly-in-4">
-      <p class="hero-line line-4">Pour tous vos projets,</p>
-    </div>
-
-    <div class="fly-in fly-in-5">
-      <p class="hero-line line-5">contactez moi</p>
-    </div>
-
-    <div class="mt-6 text-center">
-      <p class="hero-motive">Je construis des expériences soignées.</p>
-      <p class="hero-motive">Responsive, rapides et faciles à maintenir.</p>
+    <!-- Banner box matching the screenshot: centered white-bordered panel with translucent dark inner bg -->
+    <div class="hero-banner">
+        <!-- Lottie stars background (replace path with assets/animations/stars.json) -->
+        <div class="lottie-stars" aria-hidden="true">
+          <app-lottie-player path="/assets/animations/stars.json" [autoplay]="true" [loop]="true"></app-lottie-player>
+        </div>
+        <!-- Lottie waterfall panels (left and right) -->
+         <div class="lottie-water left" aria-hidden="true">
+           <app-lottie-player path="/assets/animations/water-left.json" [autoplay]="true" [loop]="true"></app-lottie-player>
+         </div>
+         <div class="lottie-water right" aria-hidden="true">
+           <app-lottie-player path="/assets/animations/water-right.json" [autoplay]="true" [loop]="true"></app-lottie-player>
+         </div>
+        <div class="hero-banner-box anim-fade-in" [animateOnScroll]="'anim-fade-in-show'">
+         <p class="banner-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Bonjour je m'appelle <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">DEMBELE Innocode</span>, développeur web/mobile. Pour tous vos projets, <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">contactez moi</span></p>
+       </div>
     </div>
   </div>
 
@@ -225,15 +215,16 @@
     function createWaterParticles() {
       waterParticles.length = 0;
       for (let i = 0; i < numParticles; i++) {
+        // start particles above the canvas so they fall down like a waterfall
         waterParticles.push({
-          y: Math.random() * h * 0.7 + h * 0.3,
+          y: (Math.random() * 0.4 - 0.6) * h, // start above the top
           x: Math.random() * w,
           radius: Math.random() * 3 + 1,
-          speedY: -(Math.random() * 0.5 + 0.1),
-          speedX: (Math.random() - 0.5) * 0.8,
-          life: Math.random() * 0.5 + 0.5,
+          speedY: Math.random() * 0.6 + 0.6,   // positive -> falling down
+          speedX: (Math.random() - 0.5) * 0.6,
+          life: Math.random() * 0.6 + 0.4,
           maxLife: 1,
-          isDrip: Math.random() > 0.7,
+          isDrip: Math.random() > 0.65,
           waveOffset: Math.random() * Math.PI * 2
         });
       }
@@ -316,32 +307,43 @@
 
       for (const p of waterParticles) {
         const px = side === 1 ? w - (p.x % w) : p.x;
-        const screenY = p.y;
-        
-        const waveEffect = Math.sin(px * 0.02 + waterTime * 2 + p.waveOffset) * 3;
-        
+        // apply a subtle horizontal wave effect
+        const waveEffect = Math.sin(px * 0.02 + waterTime * 2 + p.waveOffset) * 2.5;
+
+        // falling: increase y
         p.y += p.speedY;
-        p.x += p.speedX + waveEffect * 0.1;
-        
-        if (p.y < -p.radius) {
-          p.y = h + p.radius;
+        p.x += p.speedX + waveEffect * 0.08;
+
+        // when particle passes the bottom, create a splash and reset above
+        const screenY = p.y;
+        if (p.y > h + p.radius) {
+          // reset to slightly above the visible area
+          p.y = (Math.random() * 0.4 - 0.6) * h;
           p.x = Math.random() * w;
+          p.speedY = Math.random() * 0.6 + 0.6;
         }
         if (p.x < -p.radius) p.x = w + p.radius;
         if (p.x > w + p.radius) p.x = -p.radius;
-        
-        const dropGrad = ctx.createRadialGradient(
-          px - 1, screenY - 1, 0,
-          px, screenY, Math.max(1, p.radius)
-        );
-        dropGrad.addColorStop(0, `rgba(255, 255, 255, ${0.3 * p.life})`);
-        dropGrad.addColorStop(0.5, `rgba(180, 230, 255, ${0.15 * p.life})`);
-        dropGrad.addColorStop(1, `rgba(0, 150, 240, 0)`);
-        
-        ctx.beginPath();
-        ctx.arc(px, screenY, Math.max(0.5, p.radius), 0, Math.PI * 2);
-        ctx.fillStyle = dropGrad;
-        ctx.fill();
+
+        // draw falling streak (a short vertical line + a droplet)
+        const tail = Math.max(6, p.radius * 4);
+        const grad = ctx.createLinearGradient(px, screenY - tail, px, screenY);
+        grad.addColorStop(0, 'rgba(255,255,255,0)');
+        grad.addColorStop(1, `rgba(200,230,255,${0.22 * p.life})`);
+        ctx.beginPath(); ctx.moveTo(px, screenY - tail); ctx.lineTo(px, screenY);
+        ctx.strokeStyle = grad; ctx.lineWidth = Math.max(1, p.radius * 0.9); ctx.stroke();
+
+        // droplet / splash at contact with lower water (visual only)
+        const bottomThreshold = h - (h * 0.08);
+        if (screenY > bottomThreshold) {
+          const splashSize = Math.min(12, p.radius * 3 + (screenY - bottomThreshold) * 0.02);
+          const dropGrad = ctx.createRadialGradient(px, bottomThreshold - 2, 0, px, bottomThreshold + splashSize / 2, splashSize);
+          dropGrad.addColorStop(0, `rgba(255,255,255,${0.35 * p.life})`);
+          dropGrad.addColorStop(0.5, `rgba(180,230,255,${0.12 * p.life})`);
+          dropGrad.addColorStop(1, 'rgba(0,150,240,0)');
+          ctx.beginPath(); ctx.arc(px, bottomThreshold + splashSize * 0.2, splashSize, 0, Math.PI * 2);
+          ctx.fillStyle = dropGrad; ctx.fill();
+        }
       }
 
       ctx.globalAlpha = 0.1;

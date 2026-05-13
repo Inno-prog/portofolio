@@ -1,22 +1,23 @@
 import { Component } from '@angular/core';
+import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './projects.html',
   styleUrl: './projects.css',
 })
 export class Projects {
   webProjects = [
-    { title: 'Portfolio Personnel', desc: 'Site portfolio développé avec Angular 20 , spring-boot et Tailwind CSS.', techs: ['Angular', 'TypeScript', 'Tailwind'], url: '' },
-    { title: 'App de suivi de prestations de maintenance informatique', desc: 'Application de suivi des maintenances informatiques', techs: ['Angular', 'Spring Boot', 'PostgreSQL'], url: '' },
-    { title: 'Appication de demandes de stages', desc: 'Plateforme de demande de stage.', techs: ['Next.js', 'Node.js', 'MySQL'], url: '' },
+    { title: 'Portfolio Personnel', desc: 'Site portfolio développé avec Angular 20, Spring Boot et Tailwind CSS.', techs: ['Angular', 'TypeScript', 'Tailwind'], url: '', img: 'assets/portofolio.png' },
+    { title: 'Plateforme de suivi de prestations de maintenance au profit de la DGSI', desc: 'Application de suivi des maintenances informatiques (SUMIO DGSI) — gestion des prestations, suivi sécurisé et ordres de commandes.', techs: ['Angular', 'Spring Boot', 'PostgreSQL'], url: '', img: 'assets/dgsi.png' },
+    { title: 'Application de demandes de stages', desc: 'Plateforme de demande de stage.', techs: ['Next.js', 'Node.js', 'MySQL'], url: '', img: 'assets/stage.png' },
   ];
 
   mobileProjects = [
-    { title: 'App Mobile Flutter', desc: 'Application mini-marcketplace', techs: ['Flutter', 'Dart', 'postgresql$'] },
-    { title: 'App de conversion de fichier', desc: 'Application de convertion de fichier de tout type.', techs: ['Flutter', 'Spring Boot',] },
+    { title: 'Version Mobile du Portfolio', desc: 'Application mobile Flutter — version mobile de mon portfolio personnel.', techs: ['Flutter', 'Dart'], img: 'assets/mobile.png' },
+    { title: 'App de conversion de fichier', desc: 'Application de convertion de fichier de tout type.', techs: ['Flutter', 'Spring Boot'], img: '' },
   ];
 
   otherProjects = [

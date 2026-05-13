@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, AnimateOnScrollDirective],
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
@@ -13,6 +14,7 @@ export class Services {
     {
       title: "Création d'affiches",
       desc: "Conception d'affiches professionnelles, flyers et supports visuels percutants pour vos événements et promotions.",
+      image: "assets/création d'affiche.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="6" width="32" height="36" rx="3" stroke="#f97316" stroke-width="2"/>
         <path d="M14 16h20M14 22h14M14 28h18" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
@@ -23,6 +25,7 @@ export class Services {
     {
       title: 'Installation de logiciels',
       desc: "Installation et configuration de tous types de logiciels sur Windows. Mise en place rapide et fiable.",
+      image: "assets/installation de logiciel.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="10" width="36" height="24" rx="3" stroke="#f97316" stroke-width="2"/>
         <path d="M16 34v4M32 34v4M12 38h24" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
@@ -32,6 +35,7 @@ export class Services {
     {
       title: 'Mises à jour & pilotes',
       desc: "Mise à jour du système d'exploitation, installation de pilotes matériels pour optimiser les performances de votre PC.",
+      image: "assets/mises à jour de pilote.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="14" stroke="#f97316" stroke-width="2"/>
         <circle cx="24" cy="24" r="4" fill="#f97316"/>
@@ -42,6 +46,7 @@ export class Services {
     {
       title: 'Présentations PowerPoint',
       desc: "Création de présentations PowerPoint élégantes et percutantes pour vos réunions, soutenances et conférences.",
+      image: "assets/création de powerpoint.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="8" width="36" height="26" rx="3" stroke="#f97316" stroke-width="2"/>
         <path d="M18 34v6M30 34v6M12 40h24" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
@@ -52,6 +57,7 @@ export class Services {
     {
       title: 'Activation Windows & Office',
       desc: "Activation de Windows, Microsoft Office et autres logiciels bureautiques. Service rapide et garanti.",
+      image: null,
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="8" width="14" height="14" rx="2" stroke="#f97316" stroke-width="2"/>
         <rect x="26" y="8" width="14" height="14" rx="2" stroke="#f97316" stroke-width="2"/>
@@ -63,6 +69,7 @@ export class Services {
     {
       title: 'Développement Web & Mobile',
       desc: "Création de sites web et applications mobiles modernes, responsives et performants avec Angular, Spring Boot et Flutter.",
+      image: "assets/développement d'application.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="16" stroke="#f97316" stroke-width="2"/>
         <path d="M8 24h32M24 8c-4 4-6 10-6 16s2 12 6 16M24 8c4 4 6 10 6 16s-2 12-6 16" stroke="#f97316" stroke-width="1.5"/>

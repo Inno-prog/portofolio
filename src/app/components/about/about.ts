@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
+import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './about.html',
   styleUrl: './about.css',
 })
 export class About {
-
   downloadCv() {
     window.open('/assets/cv-innocent-dembele.pdf', '_blank');
   }
@@ -19,6 +19,22 @@ export class About {
     { category: 'Flutter / Dart', level: '70%' },
     { category: 'PostgreSQL / MySQL', level: '75%' },
     { category: 'Docker / Git', level: '65%' },
+  ];
+
+  personalInfo = [
+    { label: 'Nom complet', value: 'DEMBELE Innocent' },
+    { label: 'Nationalité', value: 'Burkinabè' },
+    { label: 'Email', value: 'dembeleinnocent440@gmail.com' },
+    { label: 'Phone', value: '+226 06 01 31 65' },
+    { label: 'Address', value: 'Ouagadougou, Burkina Faso' },
+    { label: 'Disponibilité', value: 'Immédiate' },
+  ];
+
+  socials = [
+    { icon: '✉️', label: 'Email', url: 'mailto:dembeleinnocent440@gmail.com' },
+    { icon: '💬', label: 'WhatsApp', url: 'https://wa.me/qr/UYCVF3ADDIURN1' },
+    { icon: '🔗', label: 'LinkedIn', url: 'https://www.linkedin.com/in/innocent-d-266b97302/' },
+    { icon: '🐙', label: 'GitHub', url: 'https://github.com/Inno-prog' },
   ];
 
   expertise = [

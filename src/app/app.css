@@ -7,32 +7,3 @@
 .app-main {
   flex: 1;
 }
-
-/* ── DESKTOP ── */
-@media (min-width: 768px) {
-  .app-shell {
-    height: 100vh;
-    overflow: hidden;
-  }
-  .app-main {
-    overflow: hidden;
-    min-height: 0;
-  }
-  .mobile-single-page {
-    display: none;
-  }
-}
-
-/* ── MOBILE ── */
-@media (max-width: 767px) {
-  .app-shell {
-    height: auto;
-    overflow: visible;
-  }
-  .desktop-only {
-    display: none;
-  }
-  .mobile-single-page {
-    display: block;
-  }
-}

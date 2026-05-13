@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './experience.html',
   styleUrl: './experience.css',
 })

@@ -2,58 +2,66 @@
   <div class="page-cols">
 
     <!-- Col 1 : Expériences -->
-    <div class="page-col">
-      <h2 class="col-title">Expériences</h2>
-      <div class="col-underline"></div>
-      @for (exp of experiences; track exp.poste) {
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
-          <p class="col-subtitle">{{ exp.poste }}</p>
-          <p style="color:#f97316;font-size:0.85rem;font-weight:600;margin-bottom:0.3rem;">{{ exp.entreprise }}</p>
-          <p style="color:#999;font-size:0.78rem;margin-bottom:0.5rem;">{{ exp.periode }}</p>
-          <p class="col-text">{{ exp.desc }}</p>
-        </div>
-      }
+     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+       <h2 class="col-title">Expériences</h2>
+       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+      <div class="stagger anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+        @for (exp of experiences; track exp.poste) {
+          <div class="stagger-child" style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
+            <p class="col-subtitle">{{ exp.poste }}</p>
+            <p style="color:#f97316;font-size:0.85rem;font-weight:600;margin-bottom:0.3rem;">{{ exp.entreprise }}</p>
+            <p style="color:#999;font-size:0.78rem;margin-bottom:0.5rem;">{{ exp.periode }}</p>
+            <p class="col-text">{{ exp.desc }}</p>
+          </div>
+        }
+      </div>
     </div>
 
     <!-- Col 2 : Formation -->
-    <div class="page-col">
-      <h2 class="col-title">Formation</h2>
-      <div class="col-underline"></div>
-      @for (f of formations; track f.diplome) {
-        <div style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
-          <p class="col-subtitle">{{ f.diplome }}</p>
-          <p style="color:#f97316;font-size:0.85rem;font-weight:600;margin-bottom:0.3rem;">{{ f.etablissement }}</p>
-          <p style="color:#999;font-size:0.78rem;">{{ f.annee }}</p>
-        </div>
-      }
+     <div class="page-col anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
+       <h2 class="col-title">Formation</h2>
+       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+      <div class="stagger anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
+        @for (f of formations; track f.diplome) {
+          <div class="stagger-child" style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
+            <p class="col-subtitle">{{ f.diplome }}</p>
+            <p style="color:#f97316;font-size:0.85rem;font-weight:600;margin-bottom:0.3rem;">{{ f.etablissement }}</p>
+            <p style="color:#999;font-size:0.78rem;">{{ f.annee }}</p>
+          </div>
+        }
+      </div>
     </div>
 
     <!-- Col 3 : Certifications & Langues -->
-    <div class="page-col">
-      <h2 class="col-title">Certifications et attestations </h2>
-      <div class="col-underline"></div>
-      @for (cert of certifications; track cert.titre) {
-        <div class="expertise-item">
-          <div class="expertise-icon">🏅</div>
-          <div>
-            <div class="expertise-title">{{ cert.titre }}</div>
-            <div class="expertise-desc">{{ cert.organisme }}</div>
+     <div class="page-col anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+       <h2 class="col-title">Certifications et attestations </h2>
+       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+      <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+        @for (cert of certifications; track cert.titre) {
+          <div class="stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'" style="display:flex;align-items:flex-start;gap:1rem;padding:0.8rem;border-bottom:1px solid #e5e7eb;border-radius:4px;background:#fff;">
+            <div class="expertise-icon anim-bounce-in anim-float" [animateOnScroll]="'anim-bounce-in-show'" style="font-size:1.4rem;color:#f97316;flex-shrink:0;">🏅</div>
+            <div>
+              <div class="expertise-title anim-slide-left" [animateOnScroll]="'anim-slide-left-show'" style="font-size:0.88rem;font-weight:600;color:#111;">{{ cert.titre }}</div>
+              <div class="expertise-desc anim-fade-up" [animateOnScroll]="'anim-fade-up-show'" style="font-size:0.78rem;color:#777;margin-top:2px;">{{ cert.organisme }}</div>
+            </div>
           </div>
-        </div>
-      }
+        }
+      </div>
 
       <h2 class="col-title" style="margin-top:2rem;">Langues</h2>
-      <div class="col-underline"></div>
-      @for (lang of langues; track lang.nom) {
-        <div style="margin-bottom:0.8rem;">
-          <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#444;margin-bottom:4px;">
-            <span>{{ lang.nom }}</span><span style="color:#f97316;">{{ lang.niveau }}</span>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+      <div class="stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
+        @for (lang of langues; track lang.nom) {
+          <div class="stagger-child anim-float" style="margin-bottom:0.8rem;">
+            <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:#444;margin-bottom:4px;">
+              <span>{{ lang.nom }}</span><span style="color:#f97316;">{{ lang.niveau }}</span>
+            </div>
+            <div style="background:#e5e7eb;border-radius:4px;height:5px;">
+              <div [style.width]="lang.pct" class="anim-pulse" style="background:#f97316;height:5px;border-radius:4px;"></div>
+            </div>
           </div>
-          <div style="background:#e5e7eb;border-radius:4px;height:5px;">
-            <div [style.width]="lang.pct" style="background:#f97316;height:5px;border-radius:4px;"></div>
-          </div>
-        </div>
-      }
+        }
+      </div>
     </div>
 
   </div>

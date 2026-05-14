@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'experience', loadComponent: () => import('./components/experience/experience').then(m => m.Experience) },
   { path: 'contact', loadComponent: () => import('./components/contact/contact').then(m => m.Contact) },
   { path: 'services', loadComponent: () => import('./components/services/services').then(m => m.Services) },
+  { path: 'sitemap.xml', loadComponent: () => import('./components/sitemap/sitemap.component').then(m => m.SitemapComponent) },
   { path: '**', redirectTo: '' },
 ];

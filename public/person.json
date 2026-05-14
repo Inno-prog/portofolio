@@ -2,8 +2,8 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Innocent DEMBELE",
-  "url": "https://portofolio-egmfvmtdd-deploiementvercel.vercel.app/",
-  "image": "https://portofolio-egmfvmtdd-deploiementvercel.vercel.app/assets/photo.png",
+  "url": "https://portofolio-eta-azure.vercel.app/",
+  "image": "https://portofolio-eta-azure.vercel.app/assets/photo.png",
   "jobTitle": "Développeur Full Stack Web & Mobile",
   "description": "Développeur Full Stack spécialisé en Angular, Spring Boot et Flutter. Basé à Ouagadougou, Burkina Faso.",
   "address": {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portofolio-egmfvmtdd-deploiementvercel.vercel.app/sitemap.xml
+Sitemap: https://portofolio-eta-azure.vercel.app/sitemap.xml

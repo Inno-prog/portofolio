@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio.innocodedembele.com/sitemap.xml
+Sitemap: https://portofolio-egmfvmtdd-deploiementvercel.vercel.app/sitemap.xml

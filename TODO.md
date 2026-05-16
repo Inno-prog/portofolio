@@ -7,6 +7,6 @@
 - [x] Update `vercel.json` to ensure `/sitemap.xml` is served as a static asset and not rewritten to SPA HTML
 
 - [x] Rebuild and verify sitemap file content and headers
-- [ ] Run sitemap validator check again
+- [x] Run sitemap validator check again
 
 

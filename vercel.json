@@ -2,6 +2,12 @@
   "version": 2,
   "buildCommand": "npm run build:prod",
   "outputDirectory": "dist/portofolio/browser",
+  "routes": [
+    {
+      "src": "/sitemap.xml",
+      "dest": "/sitemap.xml"
+    }
+  ],
   "headers": [
     {
       "source": "/sitemap.xml",

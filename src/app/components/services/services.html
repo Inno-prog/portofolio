@@ -7,14 +7,15 @@
     @for (service of services; track service.title) {
       <div class="service-card">
         <div class="card-icon">
-          @if (service.image) {
-            <img [src]="service.image" [alt]="service.title" class="service-image">
-          } @else {
-            <div [innerHTML]="service.svg"></div>
-          }
+          <div [innerHTML]="service.svg"></div>
         </div>
         <h3 class="card-title">{{ service.title }}</h3>
         <p class="card-desc">{{ service.desc }}</p>
+        @if (service.image) {
+          <div class="card-image">
+            <img [src]="service.image" [alt]="service.title">
+          </div>
+        }
       </div>
     }
 

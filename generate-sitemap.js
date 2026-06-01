@@ -10,7 +10,8 @@ const routes = [
   { path: '/projects', priority: '0.8', changefreq: 'monthly' },
   { path: '/experience', priority: '0.7', changefreq: 'monthly' },
   { path: '/contact', priority: '0.7', changefreq: 'monthly' },
-  { path: '/services', priority: '0.6', changefreq: 'monthly' }
+  { path: '/services', priority: '0.6', changefreq: 'monthly' },
+  { path: '/photo-innocent-dembele.html', priority: '0.9', changefreq: 'monthly' }
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

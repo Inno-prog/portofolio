@@ -1,0 +1,57 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ImageObject",
+  "url": "https://portofolio-eta-azure.vercel.app/assets/photo.png",
+  "name": "Photo Innocent DEMBELE",
+  "alternateName": [
+    "Photo DEMBELE Innocent",
+    "Portrait Innocent DEMBELE",
+    "INNOCENT DEMBELE photo",
+    "innocent dembele image"
+  ],
+  "caption": "Portrait professionnel d'Innocent DEMBELE - Développeur Full Stack Web et Mobile",
+  "description": "Photo professionnelle d'Innocent DEMBELE, développeur full stack spécialisé en Angular, TypeScript, Spring Boot, Java, Flutter et Dart. Basé à Ouagadougou, Burkina Faso.",
+  "keywords": [
+    "Innocent DEMBELE",
+    "DEMBELE Innocent", 
+    "innocent dembele",
+    "INNOCENT DEMBELE",
+    "développeur full stack",
+    "Angular",
+    "Spring Boot", 
+    "Flutter",
+    "Burkina Faso",
+    "Ouagadougou",
+    "portrait professionnel",
+    "photo développeur",
+    "développeur web",
+    "développeur mobile"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "Innocent DEMBELE",
+    "alternateName": [
+      "DEMBELE Innocent",
+      "innocent dembele", 
+      "INNOCENT DEMBELE"
+    ],
+    "jobTitle": "Développeur Full Stack Web & Mobile",
+    "url": "https://portofolio-eta-azure.vercel.app",
+    "sameAs": [
+      "https://github.com/Inno-prog",
+      "https://www.linkedin.com/in/innocent-d-266b97302/"
+    ]
+  },
+  "copyrightHolder": {
+    "@type": "Person",
+    "name": "Innocent DEMBELE"
+  },
+  "license": "https://portofolio-eta-azure.vercel.app",
+  "acquireLicensePage": "https://portofolio-eta-azure.vercel.app/contact",
+  "contentLocation": {
+    "@type": "Place",
+    "name": "Ouagadougou, Burkina Faso"
+  },
+  "dateCreated": "2024-12-16",
+  "uploadDate": "2024-12-16"
+}

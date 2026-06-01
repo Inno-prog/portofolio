@@ -2,8 +2,14 @@ User-agent: *
 Allow: /
 
 # Pages importantes pour le SEO
-Allow: /dembele-innocent.html
+Allow: /photo-innocent-dembele.html
 Allow: /assets/photo.png
+Allow: /assets/photo.jpeg
+
+# Images importantes
+Allow: /assets/*.png
+Allow: /assets/*.jpg
+Allow: /assets/*.jpeg
 
 Sitemap: https://portofolio-eta-azure.vercel.app/sitemap.xml
 

@@ -57,7 +57,7 @@ export class Services {
     {
       title: 'Activation Windows & Office',
       desc: "Activation de Windows, Microsoft Office et autres logiciels bureautiques. Service rapide et garanti.",
-      image: null,
+      image: "assets/activation d'aoffice.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="8" width="14" height="14" rx="2" stroke="#f97316" stroke-width="2"/>
         <rect x="26" y="8" width="14" height="14" rx="2" stroke="#f97316" stroke-width="2"/>

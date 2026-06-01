@@ -45,6 +45,13 @@
   padding: 2px 4px;
 }
 
+.service-image {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .card-title { font-size: 1rem; font-weight: 700; color: #111; margin-bottom: 0.6rem; margin-top: 0.3rem; }
 .card-desc { font-size: 0.85rem; color: #666; line-height: 1.6; }
 

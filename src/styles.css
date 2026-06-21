@@ -11,14 +11,32 @@
   --brand-600: #E0B43C;
   --bg: #0F0F1A;
   --muted: #e2e8f0;
+  --page-bg: #0b1630; /* dark default */
+  --text: #e6f0ff;
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--muted);
+  background-color: var(--page-bg);
+  color: var(--text);
   font-family: 'Poppins', 'Inter', sans-serif;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+}
+
+/* Light theme variables applied when data-theme="light" on documentElement */
+:root[data-theme="light"] {
+  --brand: #0b5fff;
+  --brand-600: #0845cc;
+  --bg: #ffffff;
+  --muted: #222831;
+  --page-bg: #ffffff;
+  --text: #0b1630;
+}
+
+/* Prevent background scroll when mobile menu is open */
+.no-scroll {
+  overflow: hidden !important;
+  height: 100vh !important;
 }
 
 ::-webkit-scrollbar {

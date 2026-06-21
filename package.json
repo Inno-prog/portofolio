@@ -5,10 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "node generate-sitemap.js && ng build --configuration=production && bash ./copy-sitemap.sh",
-    "generate-sitemap": "node generate-sitemap.js",
-    "post-deploy": "bash post-deploy.sh",
-    "deploy": "vercel --prod && npm run post-deploy",
+  "build:prod": "ng build --configuration=production && bash ./copy-sitemap.sh",
     "watch": "ng build --watch --configuration development",
     "lint": "npx ng lint || echo 'No lint config'",
     "test": "ng test"

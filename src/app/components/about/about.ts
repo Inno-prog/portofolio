@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-about',
@@ -9,6 +10,8 @@ import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.dir
   styleUrl: './about.css',
 })
 export class About {
+  constructor(public i18n: I18nService) {}
+
   downloadCv() {
     window.open('/assets/cv-innocent-dembele.pdf', '_blank');
   }

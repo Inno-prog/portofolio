@@ -2,74 +2,93 @@
   <div class="page-cols">
 
     <!-- Col 1 : Projets Web -->
-    <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+    <section class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
       <h2 class="col-title">Projets Web</h2>
-      <div class="col-underline"></div>
-      <div class="stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-        @for (project of webProjects; track project.title) {
-          <div class="stagger-child anim-scale-up anim-float">
-            @if (project.img) {
-              <img [src]="project.img" [alt]="project.title"
-                style="width:100%;height:auto;object-fit:contain;border-radius:8px;margin-bottom:0.75rem;border:1px solid #e5e7eb;" class="anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-            }
-            <p class="col-subtitle anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">{{ project.title }}</p>
-            <p class="col-text anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">{{ project.desc }}</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
-              @for (tech of project.techs; track tech) {
-                <span class="anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'" style="padding:2px 8px;border:1px solid #f97316;color:#f97316;font-size:0.75rem;border-radius:4px;">{{ tech }}</span>
-              }
-            </div>
-            @if (project.url) {
-              <a [href]="project.url" target="_blank" style="display:inline-block;margin-top:0.5rem;color:#f97316;font-size:0.8rem;">→ Voir le projet</a>
-            }
-          </div>
-        }
-      </div>
-    </div>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
-    <!-- Col 2 : Projets Mobile -->
-    <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-      <h2 class="col-title">Projets Mobile</h2>
-      <div class="col-underline"></div>
-      <div class="stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-        @for (project of mobileProjects; track project.title) {
-          <div class="stagger-child" style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
+      <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
+        @for (project of webProjects; track project.title) {
+          <article class="project-card stagger-child anim-scale-up anim-float" [animateOnScroll]="'anim-scale-up-show'">
             @if (project.img) {
-              <div style="display:flex;justify-content:center;margin-bottom:0.75rem;">
-                <img [src]="project.img" [alt]="project.title"
-                  style="width:50%;height:auto;object-fit:contain;border-radius:8px;border:1px solid #e5e7eb;">
+              <div class="project-image web-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                <img [src]="project.img" [alt]="project.title" />
               </div>
             }
-            <p class="col-subtitle">{{ project.title }}</p>
-            <p class="col-text">{{ project.desc }}</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+
+            <p class="col-subtitle anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">{{ project.title }}</p>
+            <p class="col-text anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">{{ project.desc }}</p>
+
+            <div class="techs">
               @for (tech of project.techs; track tech) {
-                <span style="padding:2px 8px;border:1px solid #f97316;color:#f97316;font-size:0.75rem;border-radius:4px;">{{ tech }}</span>
+                <span class="tech-pill anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ tech }}</span>
               }
             </div>
-          </div>
+
+            @if (project.url) {
+              <a class="project-link" [href]="project.url" target="_blank">→ Voir le projet</a>
+            }
+          </article>
         }
       </div>
-    </div>
+    </section>
+
+    <!-- Col 2 : Projets Mobile -->
+    <section class="page-col anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Projets Mobile</h2>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+
+      <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
+        @for (project of mobileProjects; track project.title) {
+          <article class="project-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            @if (project.img) {
+              <div class="project-image mobile-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                <img [src]="project.img" [alt]="project.title" />
+              </div>
+            } @else {
+              <div class="project-image mobile-img" style="display:flex;justify-content:center;">
+                <div class="mobile-placeholder">📱</div>
+              </div>
+            }
+
+            <p class="col-subtitle">{{ project.title }}</p>
+            <p class="col-text">{{ project.desc }}</p>
+
+            <div class="techs">
+              @for (tech of project.techs; track tech) {
+                <span class="tech-pill">{{ tech }}</span>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
 
     <!-- Col 3 : Autres Projets -->
-    <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-      <h2 class="col-title">Autres Projets</h2>
-      <div class="col-underline"></div>
-      <div class="stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
+    <section class="page-col anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Autres Projets</h2>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+
+      <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
         @for (project of otherProjects; track project.title) {
-          <div class="stagger-child" style="margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid #e5e7eb;">
+          <article class="project-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            @if (project.img) {
+              <div class="project-image anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                <img [src]="project.img" [alt]="project.title" />
+              </div>
+            }
+
             <p class="col-subtitle">{{ project.title }}</p>
             <p class="col-text">{{ project.desc }}</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+
+            <div class="techs">
               @for (tech of project.techs; track tech) {
-                <span style="padding:2px 8px;border:1px solid #f97316;color:#f97316;font-size:0.75rem;border-radius:4px;">{{ tech }}</span>
+                <span class="tech-pill">{{ tech }}</span>
               }
             </div>
-          </div>
+          </article>
         }
       </div>
-    </div>
+    </section>
 
   </div>
 </div>

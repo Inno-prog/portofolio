@@ -1,88 +1,123 @@
 <div class="page-layout">
   <div class="page-cols">
 
-     <!-- Col 1 : Contactez-moi -->
-     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-       <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Contactez-moi</h2>
-       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
-      <p class="col-text">Disponible pour missions freelance, collaborations ou opportunités. Réponse sous 24h.</p>
+    <!-- Col 1 : Contact Info -->
+    <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('contact_title') }}</h2>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+      <p class="col-text anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+        {{ i18n.t('contact_available') }}
+      </p>
 
-       <div class="stagger anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">
-         <a href="mailto:dembeleinnocent440@gmail.com" class="stagger-child" style="display:flex;align-items:center;gap:0.8rem;color:#222;text-decoration:none;">
-          <span style="font-size:1.3rem;">📧</span>
-          <div>
-            <div style="font-size:0.75rem;color:#999;">Email</div>
-            <div style="font-size:0.85rem;font-weight:600;">dembeleinnocent440&#64;gmail.com</div>
+      <div class="contact-list stagger" [animateOnScroll]="'anim-bounce-in-show'">
+        <a href="mailto:dembeleinnocent440@gmail.com" class="contact-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+          <div class="contact-icon-wrapper">
+            <span class="contact-emoji">📧</span>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">{{ i18n.t('contact_email_label') }}</div>
+            <div class="contact-value">dembeleinnocent440@gmail.com</div>
           </div>
         </a>
-        <a href="https://wa.me/qr/UYCVF3ADDIURN1" target="_blank" class="stagger-child" style="display:flex;align-items:center;gap:0.8rem;color:#222;text-decoration:none;">
-          <span style="font-size:1.3rem;">💬</span>
-          <div>
-            <div style="font-size:0.75rem;color:#999;">WhatsApp</div>
-            <div style="font-size:0.85rem;font-weight:600;">Me contacter</div>
+        <a href="https://wa.me/qr/UYCVF3ADDIURN1" target="_blank" class="contact-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+          <div class="contact-icon-wrapper">
+            <span class="contact-emoji">💬</span>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">{{ i18n.t('contact_whatsapp_label') }}</div>
+            <div class="contact-value">{{ i18n.lang === 'fr' ? 'Me contacter' : 'Contact me' }}</div>
           </div>
         </a>
-        <div class="stagger-child" style="display:flex;align-items:center;gap:0.8rem;">
-          <span style="font-size:1.3rem;">📍</span>
-          <div>
-            <div style="font-size:0.75rem;color:#999;">Localisation</div>
-            <div style="font-size:0.85rem;font-weight:600;">Ouagadougou, Burkina Faso</div>
+        <div class="contact-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+          <div class="contact-icon-wrapper">
+            <span class="contact-emoji">📍</span>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">{{ i18n.t('contact_local_label') }}</div>
+              <div class="contact-value">Ouagadougou, Burkina Faso</div>
           </div>
         </div>
-        <a href="tel:+22606013165" class="stagger-child" style="display:flex;align-items:center;gap:0.8rem;color:#222;text-decoration:none;">
-          <span style="font-size:1.3rem;">📞</span>
-          <div>
-            <div style="font-size:0.75rem;color:#999;">Téléphone</div>
-            <div style="font-size:0.85rem;font-weight:600;">+226 06 01 31 65</div>
+        <a href="tel:+22606013165" class="contact-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+          <div class="contact-icon-wrapper">
+            <span class="contact-emoji">📞</span>
+          </div>
+          <div class="contact-info">
+            <div class="contact-label">{{ i18n.t('contact_phone_label') }}</div>
+            <div class="contact-value">+226 06 01 31 65</div>
           </div>
         </a>
       </div>
     </div>
 
-     <!-- Col 2 : Formulaire -->
-     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-       <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Envoyer un message</h2>
-       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+    <!-- Col 2 : Formulaire -->
+    <div class="page-col anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('contact_send_title') }}</h2>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
       @if (success()) {
-        <div style="padding:0.8rem;background:#f0fdf4;border:1px solid #86efac;color:#166534;border-radius:6px;margin-bottom:1rem;font-size:0.85rem;" class="anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
-          Message envoyé avec succès !
+        <div class="alert-success anim-slide-up" [animateOnScroll]="'anim-fade-down-show'">
+{{ i18n.t('contact_success') }}
         </div>
       }
 
-       <form (ngSubmit)="onSubmit()" style="display:flex;flex-direction:column;gap:0.8rem;">
-        <input [(ngModel)]="form.name" name="name" required placeholder="Votre nom"
-               class="anim-blur-in" [animateOnScroll]="'anim-blur-in-show'"
-               style="padding:0.6rem 0.8rem;border:1px solid #d1d5db;border-radius:4px;font-size:0.875rem;outline:none;">
-        <input [(ngModel)]="form.email" name="email" type="email" required placeholder="Votre email"
-               class="anim-slide-right" [animateOnScroll]="'anim-slide-right-show'"
-               style="padding:0.6rem 0.8rem;border:1px solid #d1d5db;border-radius:4px;font-size:0.875rem;outline:none;">
-        <input [(ngModel)]="form.subject" name="subject" placeholder="Sujet"
-               class="anim-fade-up" [animateOnScroll]="'anim-fade-up-show'"
-               style="padding:0.6rem 0.8rem;border:1px solid #d1d5db;border-radius:4px;font-size:0.875rem;outline:none;">
-        <textarea [(ngModel)]="form.message" name="message" required rows="5" placeholder="Votre message..."
-                  class="anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"
-                  style="padding:0.6rem 0.8rem;border:1px solid #d1d5db;border-radius:4px;font-size:0.875rem;outline:none;resize:none;"></textarea>
-        <button type="submit" [disabled]="sending()"
-                class="anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'"
-                style="padding:0.7rem;background:#f97316;color:#fff;border:none;border-radius:4px;font-weight:600;cursor:pointer;font-size:0.875rem;">
-          {{ sending() ? 'Envoi...' : 'Envoyer le message' }}
+      <form (ngSubmit)="onSubmit()" class="contact-form">
+        <input
+          [(ngModel)]="form.name"
+          name="name"
+          required
+          [placeholder]="i18n.t('contact_name_placeholder')"
+          class="anim-blur-in"
+          [animateOnScroll]="'anim-blur-in-show'"
+        />
+
+        <input
+          [(ngModel)]="form.email"
+          name="email"
+          type="email"
+          required
+          [placeholder]="i18n.t('contact_email_placeholder')"
+          class="anim-fade-up"
+          [animateOnScroll]="'anim-fade-up-show'"
+        />
+
+        <input
+          [(ngModel)]="form.subject"
+          name="subject"
+          [placeholder]="i18n.t('contact_subject_placeholder')"
+          class="anim-slide-left"
+          [animateOnScroll]="'anim-slide-left-show'"
+        />
+
+        <textarea
+          [(ngModel)]="form.message"
+          name="message"
+          required
+          rows="5"
+          [placeholder]="i18n.t('contact_message_placeholder')"
+          class="anim-scale-up"
+          [animateOnScroll]="'anim-scale-up-show'"
+        ></textarea>
+
+        <button type="submit" [disabled]="sending()" class="anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">
+          {{ sending() ? i18n.t('sending') : i18n.t('contact_send_button') }}
         </button>
       </form>
     </div>
 
-     <!-- Col 3 : Réseaux sociaux -->
-     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-       <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Réseaux Sociaux</h2>
-       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
+    <!-- Col 3 : Réseaux sociaux -->
+<div class="page-col anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
+      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('nav_services') }}</h2>
+      <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
-       <div class="stagger anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">
-         @for (social of socials; track social.label) {
-           <a [href]="social.url" target="_blank" class="expertise-item stagger-child" style="text-decoration:none;color:inherit;">
-            <div class="expertise-icon">{{ social.icon }}</div>
-            <div>
-              <div class="expertise-title">{{ social.label }}</div>
-              <div class="expertise-desc">{{ social.desc }}</div>
+      <div class="stagger" [animateOnScroll]="'anim-fade-up-show'">
+        @for (social of socials; track social.label) {
+          <a [href]="social.url" target="_blank" class="social-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            <div class="social-icon-wrapper">
+              <span class="social-icon">{{ social.icon }}</span>
+            </div>
+            <div class="social-info">
+              <div class="social-label">{{ social.label }}</div>
+              <div class="social-desc">{{ social.desc }}</div>
             </div>
           </a>
         }

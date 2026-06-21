@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
+import { I18nService } from '../../services/i18n.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-experience',
@@ -9,9 +11,34 @@ import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.dir
   styleUrl: './experience.css',
 })
 export class Experience {
-  experiences = [
-    { poste: 'Développeur Full Stack', entreprise: 'Projet Personnel', periode: '2023 — Présent', desc: 'Développement d\'applications web et mobiles avec Angular, Spring Boot et Flutter.' },
-    { poste: 'Développeur Frontend', entreprise: 'Stage / Freelance', periode: '2022 — 2023', desc: 'Intégration d\'interfaces web responsives avec Angular et Tailwind CSS.' },
+  experiences = [];
+
+  domains = [
+    {
+      techs: ['HTML', 'CSS', 'Angular', 'Next.js', 'Python', 'Flutter'],
+      tKey: 'devFrontend',
+      descKey: 'devFrontendDesc'
+    },
+    {
+      techs: ['Spring Boot', 'FastAPI (Python)'],
+      tKey: 'backend',
+      descKey: 'backendDesc'
+    },
+    {
+      techs: ['PostgreSQL', 'MySQL', 'Supabase'],
+      tKey: 'databases',
+      descKey: 'databasesDesc'
+    },
+    {
+      techs: ['Postman', 'Insomnia', 'Docker'],
+      tKey: 'tools',
+      descKey: 'toolsDesc'
+    },
+    {
+      techs: ['Canva', 'Photoshop'],
+      tKey: 'design',
+      descKey: 'designDesc'
+    }
   ];
 
   formations = [
@@ -22,14 +49,19 @@ export class Experience {
   ];
 
   certifications = [
-    { titre: 'Angular Developer', organisme: 'Auto-formation & pratique' },
-    { titre: 'Spring Boot REST API', organisme: 'Auto-formation & pratique' },
-    { titre: 'Flutter Mobile Dev', organisme: 'Auto-formation & pratique' },
+    { titreKey: 'angularCert', orgKey: 'autoPractice' },
+    { titreKey: 'springCert', orgKey: 'autoPractice' },
+    { titreKey: 'flutterCert', orgKey: 'autoPractice' },
   ];
 
   langues = [
-    { nom: 'Français', niveau: 'Natif', pct: '100%' },
-    { nom: 'Anglais', niveau: 'Intermédiaire', pct: '60%' },
-    { nom: 'Dioula', niveau: 'Natif', pct: '100%' },
+    { nomKey: 'french', niveauKey: 'native', pct: '100%' },
+    { nomKey: 'english', niveauKey: 'intermediate', pct: '60%' },
+    { nomKey: 'dioula', niveauKey: 'native', pct: '100%' },
   ];
+
+  constructor(public i18n: I18nService, public theme: ThemeService) {}
+
+  setLang(lang: 'fr' | 'en') { this.i18n.setLang(lang); }
+  toggleTheme() { this.theme.toggle(); }
 }

@@ -73,8 +73,12 @@
     <!-- CENTRE : liens gauche + photo + liens droite -->
     <div class="nav-center">
       <div class="nav-links-left">
-        @for (link of leftLinks; track link.label) {
-          <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
+        @for (link of leftLinks; track link.labelKey) {
+          <button
+            (click)="handleClick(link)"
+            class="nav-link"
+            [class.active-link]="isActiveRoute(link.route)"
+          >{{ i18n.t(link.labelKey || 'nav_portfolio') }}</button>
         }
       </div>
 
@@ -85,10 +89,19 @@
       </button>
 
       <div class="nav-links-right">
-        @for (link of rightLinks; track link.label) {
-          <button (click)="handleClick(link)" class="nav-link">{{ link.label }}</button>
+        @for (link of rightLinks; track link.labelKey) {
+          <button (click)="handleClick(link)" class="nav-link" [class.active-link]="isActiveRoute(link.route)">{{ i18n.t(link.labelKey || 'nav_services') }}</button>
         }
       </div>
+    </div>
+
+    <!-- CONTROLS : Theme + Langue -->
+    <div class="nav-controls" style="display:flex;gap:0.5rem;align-items:center;">
+      <div class="lang-switch">
+        <button (click)="setLang('fr')" [class.active]="i18n.lang==='fr'" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('fr') }}</button>
+        <button (click)="setLang('en')" [class.active]="i18n.lang==='en'" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('en') }}</button>
+      </div>
+      <button (click)="toggleTheme()" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('theme') }}</button>
     </div>
 
     <!-- Hamburger mobile -->
@@ -107,11 +120,12 @@
   </div>
 
   <!-- Menu mobile déroulant -->
-  @if (mobileOpen) {
+      @if (mobileOpen) {
     <div class="mobile-menu">
-      @for (link of allLinks; track link.label) {
-        <button (click)="handleClick(link)" class="mobile-link">{{ link.label }}</button>
+      @for (link of allLinks; track link.labelKey) {
+  <button (click)="handleClick(link)" class="mobile-link" [class.active-link]="isActiveRoute(link.route)">{{ i18n.t(link.labelKey || 'nav_portfolio') }}</button>
       }
+
     </div>
   }
 </nav>

@@ -1,23 +1,24 @@
 <div class="services-page">
 
-  <h2 class="services-heading"><span class="orange">Mes</span> Services</h2>
+  <h2 class="services-heading anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">
+    <span class="orange">{{ i18n.t('servicesPrefix') }}</span>
+    <span class="services-main">{{ i18n.t('servicesMain') }}</span>
+  </h2>
 
-  <div class="services-grid">
-
-    @for (service of services; track service.title) {
-      <div class="service-card">
-        <div class="card-icon">
+  <div class="services-grid stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
+    @for (service of services; track service.titleKey) {
+      <div class="service-card stagger-child">
+        <div class="card-icon" aria-hidden="true">
           <div [innerHTML]="service.svg"></div>
         </div>
-        <h3 class="card-title">{{ service.title }}</h3>
-        <p class="card-desc">{{ service.desc }}</p>
+        <h3 class="card-title">{{ i18n.t(service.titleKey) }}</h3>
+        <p class="card-desc">{{ i18n.t(service.descKey) }}</p>
         @if (service.image) {
           <div class="card-image">
-            <img [src]="service.image" [alt]="service.title">
+            <img [src]="service.image" [alt]="i18n.t(service.titleKey)">
           </div>
         }
       </div>
     }
-
   </div>
 </div>

@@ -1,23 +1,28 @@
 <div class="page-layout">
   <div class="page-cols">
 
+    <!-- Top controls: langue / thème -->
+    <div class="controls" style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:0.6rem;padding:0.4rem 2rem 0 2rem;align-items:center;">
+      <div class="lang-switch">
+        <button (click)="i18n.setLang('fr')" [class.active]="i18n.lang==='fr'">{{ i18n.t('fr') }}</button>
+        <button (click)="i18n.setLang('en')" [class.active]="i18n.lang==='en'">{{ i18n.t('en') }}</button>
+      </div>
+    </div>
+
     <!-- Colonne 1 : Que suis-je -->
     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Que suis Je ?</h2>
+  <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('about_title') }}</h2>
       <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
-      <p class="col-subtitle">DEMBELE Innocent - Développeur web/mobile, a étudié à IBAM Burkina</p>
-      <p class="col-text">
-        Je suis DEMBELE Innocent, jeune diplômé option génie Logiciel de l'Institut Burkinabè des Arts et Métiers (IBAM), Ouagadougou.
-        Développeur web/mobile passionné par le développement Angular, Spring Boot, Flutter et le design.
-      </p>
+      <p class="col-subtitle">{{ i18n.t('about_subtitle') }}</p>
+      <p class="col-text">{{ i18n.t('about_paragraph') || i18n.t('about_subtitle') }}</p>
 
       <button class="btn-cv anim-scale-up" [animateOnScroll]="'anim-scale-up-show'" (click)="downloadCv()">
-        📎 Télécharger Mon CV
+        {{ i18n.t('btn_download_cv') }}
       </button>
 
       <div style="margin-top:2rem;">
-        <h3 class="col-subtitle" style="margin-bottom:1rem;">Compétences</h3>
+  <h3 class="col-subtitle" style="margin-bottom:1rem;">{{ i18n.t('competencies_title') }}</h3>
       <div class="stagger anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
         @for (skill of skills; track skill.category) {
           <div class="stagger-child" style="margin-bottom:0.8rem;">
@@ -35,12 +40,12 @@
 
     <!-- Colonne 2 : Informations Personnelles -->
     <div class="page-col anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">
-      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Informations Personnelles</h2>
+  <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('personal_info_title') }}</h2>
       <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
       <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
         @for (info of personalInfo; track info.label) {
-          <p class="col-label stagger-child"><span>{{ info.label }}</span> : {{ info.value }}</p>
+          <p class="col-label stagger-child"><span>{{ i18n.t(info.label) || info.label }}</span> : {{ info.value }}</p>
         }
       </div>
 
@@ -55,7 +60,7 @@
 
     <!-- Colonne 3 : Mon Expertise -->
     <div class="page-col anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-      <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">Mon Expertise</h2>
+  <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('expertise_title') }}</h2>
       <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
       <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">

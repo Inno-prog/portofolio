@@ -1,6 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
+import { I18nService } from '../../services/i18n.service';
+
 
 @Component({
   selector: 'app-contact',
@@ -10,6 +12,8 @@ import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.dir
   styleUrl: './contact.css',
 })
 export class Contact {
+  constructor(public i18n: I18nService) {}
+
   form = { name: '', email: '', subject: '', message: '' };
   sending = signal(false);
   success = signal(false);

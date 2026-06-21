@@ -1,12 +1,6 @@
-# TODO
+- [ ] Analyser la mise en page de `projects` (HTML/CSS) et identifier la cause du footer mal positionné + problèmes de colonnes
+- [ ] Modifier `src/app/components/projects/projects.html` pour uniformiser la structure (cartes, centrage, suppression des styles inline cassants)
+- [ ] Modifier `src/app/components/projects/projects.css` pour délimiter les colonnes et centrer le contenu de façon cohérente
+- [x] Build / run pour vérifier que le footer est bien à la fin et que la grille est propre (desktop + mobile)
 
-## Sitemap fix
-- [x] Inspect build output `dist/portofolio/browser/sitemap.xml` after running `npm run build:prod`
-
-- [ ] Update `public/sitemap.xml` to use relative URLs (avoid hardcoded domain)
-- [x] Update `vercel.json` to ensure `/sitemap.xml` is served as a static asset and not rewritten to SPA HTML
-
-- [x] Rebuild and verify sitemap file content and headers
-- [x] Run sitemap validator check again
-
-
+- [ ] Si besoin, ajuster le layout global (`src/app/app.html` / `src/app/app.css`)

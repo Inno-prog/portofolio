@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-services',
@@ -10,10 +11,11 @@ import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.dir
   styleUrl: './services.css',
 })
 export class Services {
+  constructor(public i18n: I18nService) {}
   services = [
     {
-      title: "Création d'affiches",
-      desc: "Conception d'affiches professionnelles, flyers et supports visuels percutants pour vos événements et promotions.",
+      titleKey: 'service_poster_title',
+      descKey: 'service_poster_desc',
       image: "assets/création d'affiche.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="6" width="32" height="36" rx="3" stroke="#f97316" stroke-width="2"/>
@@ -23,8 +25,8 @@ export class Services {
       </svg>`,
     },
     {
-      title: 'Installation de logiciels',
-      desc: "Installation et configuration de tous types de logiciels sur Windows. Mise en place rapide et fiable.",
+      titleKey: 'service_install_title',
+      descKey: 'service_install_desc',
       image: "assets/installation de logiciel.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="10" width="36" height="24" rx="3" stroke="#f97316" stroke-width="2"/>
@@ -33,8 +35,8 @@ export class Services {
       </svg>`,
     },
     {
-      title: 'Mises à jour & pilotes',
-      desc: "Mise à jour du système d'exploitation, installation de pilotes matériels pour optimiser les performances de votre PC.",
+      titleKey: 'service_updates_title',
+      descKey: 'service_updates_desc',
       image: "assets/mises à jour de pilote.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="14" stroke="#f97316" stroke-width="2"/>
@@ -44,8 +46,8 @@ export class Services {
       </svg>`,
     },
     {
-      title: 'Présentations PowerPoint',
-      desc: "Création de présentations PowerPoint élégantes et percutantes pour vos réunions, soutenances et conférences.",
+      titleKey: 'service_ppt_title',
+      descKey: 'service_ppt_desc',
       image: "assets/création de powerpoint.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="8" width="36" height="26" rx="3" stroke="#f97316" stroke-width="2"/>
@@ -55,8 +57,8 @@ export class Services {
       </svg>`,
     },
     {
-      title: 'Activation Windows & Office',
-      desc: "Activation de Windows, Microsoft Office et autres logiciels bureautiques. Service rapide et garanti.",
+      titleKey: 'service_activation_title',
+      descKey: 'service_activation_desc',
       image: "assets/activation d'aoffice.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="8" width="14" height="14" rx="2" stroke="#f97316" stroke-width="2"/>
@@ -67,8 +69,8 @@ export class Services {
       </svg>`,
     },
     {
-      title: 'Développement Web & Mobile',
-      desc: "Création de sites web et applications mobiles modernes, responsives et performants avec Angular, Spring Boot et Flutter.",
+      titleKey: 'service_dev_title',
+      descKey: 'service_dev_desc',
       image: "assets/développement d'application.png",
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="16" stroke="#f97316" stroke-width="2"/>

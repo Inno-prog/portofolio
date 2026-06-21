@@ -16,12 +16,12 @@ export class Projects {
   ];
 
   mobileProjects = [
-    { title: 'Version Mobile du Portfolio', desc: 'Application mobile Flutter — version mobile de mon portfolio personnel.', techs: ['Flutter', 'Dart'], img: 'assets/mobile.png' },
-    { title: 'App de conversion de fichier', desc: 'Application de convertion de fichier de tout type.', techs: ['Flutter', 'Spring Boot'], img: '' },
+    { title: 'Version Mobile du Portfolio', desc: 'Application mobile Flutter — version mobile de mon portfolio personnel.', techs: ['Flutter', 'Dart'], img: 'assets/mobile.png', url: '' },
+    { title: 'App de conversion de fichier', desc: 'Application de convertion de fichier de tout type.', techs: ['Flutter', 'Spring Boot'], img: '', url: '' },
   ];
 
   otherProjects = [
-    { title: 'API REST Spring Boot', desc: 'API REST sécurisée avec Spring Security et JWT.', techs: ['Java', 'Spring Boot', 'JWT'] },
-    { title: 'Dashboard Analytics', desc: 'Tableau de bord avec graphiques et statistiques.', techs: ['Angular', 'Chart.js', 'TypeScript'] },
+    { title: 'API REST Spring Boot', desc: 'API REST sécurisée avec Spring Security et JWT.', techs: ['Java', 'Spring Boot', 'JWT'], img: '', url: '' },
+    { title: 'Dashboard Analytics', desc: 'Tableau de bord avec graphiques et statistiques.', techs: ['Angular', 'Chart.js', 'TypeScript'], img: '', url: '' },
   ];
 }

@@ -3,6 +3,8 @@ Allow: /
 
 # Pages importantes pour le SEO
 Allow: /photo-innocent-dembele.html
+Allow: /dembele-innocent.html
+Allow: /services-dembele-innocent.html
 Allow: /assets/photo.png
 Allow: /assets/photo.jpeg
 

@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 import { I18nService } from '../../services/i18n.service';
-
+import { PortfolioService } from '../../services/portfolio';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +12,7 @@ import { I18nService } from '../../services/i18n.service';
   styleUrl: './contact.css',
 })
 export class Contact {
-  constructor(public i18n: I18nService) {}
+  constructor(public i18n: I18nService, private portfolio: PortfolioService) {}
 
   form = { name: '', email: '', subject: '', message: '' };
   sending = signal(false);
@@ -28,11 +28,16 @@ export class Contact {
   onSubmit() {
     if (!this.form.name || !this.form.email || !this.form.message) return;
     this.sending.set(true);
-    setTimeout(() => {
-      this.success.set(true);
-      this.sending.set(false);
-      this.form = { name: '', email: '', subject: '', message: '' };
-      setTimeout(() => this.success.set(false), 4000);
-    }, 1000);
+    this.portfolio.sendContact(this.form).subscribe({
+      next: () => {
+        this.success.set(true);
+        this.sending.set(false);
+        this.form = { name: '', email: '', subject: '', message: '' };
+        setTimeout(() => this.success.set(false), 4000);
+      },
+      error: () => {
+        this.sending.set(false);
+      }
+    });
   }
 }

@@ -3,71 +3,7 @@
 
     <!-- LOGO tout à gauche, seul -->
     <div class="nav-brand" (click)="handleClick({label:'Accueil', route:'/'})">
-      <svg class="brand-logo" width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#fff8e7"/>
-            <stop offset="30%" stop-color="#ffd84d"/>
-            <stop offset="75%" stop-color="#ff6600"/>
-            <stop offset="100%" stop-color="#cc2200"/>
-          </linearGradient>
-          <filter id="glo" x="-25%" y="-35%" width="150%" height="170%">
-            <feGaussianBlur stdDeviation="3.5" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-          <filter id="gloBig" x="-30%" y="-40%" width="160%" height="180%">
-            <feGaussianBlur stdDeviation="6" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- Halo orange derrière -->
-        <ellipse cx="100" cy="34" rx="95" ry="26" fill="#ff4400" opacity="0.12" filter="url(#gloBig)"/>
-
-        <!-- Éclats gauche -->
-        <polygon points="2,30 14,10 12,32" fill="#ff6600" opacity="0.85"/>
-        <polygon points="0,34 13,50 10,28" fill="#cc3300" opacity="0.6"/>
-        <line x1="6" y1="18" x2="22" y2="22" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
-        <line x1="4" y1="44" x2="20" y2="41" stroke="#ff6600" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-
-        <!-- Éclats droite -->
-        <polygon points="198,30 186,10 188,32" fill="#ff6600" opacity="0.85"/>
-        <polygon points="200,34 187,50 190,28" fill="#cc3300" opacity="0.6"/>
-        <line x1="194" y1="18" x2="178" y2="22" stroke="#ffcc00" stroke-width="2" stroke-linecap="round"/>
-        <line x1="196" y1="44" x2="180" y2="41" stroke="#ff6600" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-
-        <!-- Ombre noire décalée -->
-        <text x="103" y="44"
-          text-anchor="middle"
-          font-family="'Permanent Marker', cursive"
-          font-size="34" fill="#000" stroke="#000" stroke-width="14"
-          stroke-linejoin="round"
-          transform="skewX(-7) translate(4,4)">InnoCode</text>
-
-        <!-- Contour orange vif -->
-        <text x="100" y="41"
-          text-anchor="middle"
-          font-family="'Permanent Marker', cursive"
-          font-size="34" fill="none" stroke="#ff4400" stroke-width="9"
-          stroke-linejoin="round"
-          transform="skewX(-7)">InnoCode</text>
-
-        <!-- Contour noir net -->
-        <text x="100" y="41"
-          text-anchor="middle"
-          font-family="'Permanent Marker', cursive"
-          font-size="34" fill="none" stroke="#000" stroke-width="3"
-          stroke-linejoin="round"
-          transform="skewX(-7)">InnoCode</text>
-
-        <!-- Texte dégradé final -->
-        <text x="100" y="41"
-          text-anchor="middle"
-          font-family="'Permanent Marker', cursive"
-          font-size="34" fill="url(#tg)"
-          transform="skewX(-7)"
-          filter="url(#glo)">InnoCode</text>
-      </svg>
+      <img src="assets/innocode-logo.png" alt="InnoCode" class="brand-logo-img" />
     </div>
 
     <!-- CENTRE : liens gauche + photo + liens droite -->
@@ -96,12 +32,12 @@
     </div>
 
     <!-- CONTROLS : Theme + Langue -->
-    <div class="nav-controls" style="display:flex;gap:0.5rem;align-items:center;">
+    <div class="nav-controls">
       <div class="lang-switch">
-        <button (click)="setLang('fr')" [class.active]="i18n.lang==='fr'" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('fr') }}</button>
-        <button (click)="setLang('en')" [class.active]="i18n.lang==='en'" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('en') }}</button>
+        <button (click)="setLang('fr')" [class.active]="i18n.lang==='fr'">{{ i18n.t('fr') }}</button>
+        <button (click)="setLang('en')" [class.active]="i18n.lang==='en'">{{ i18n.t('en') }}</button>
       </div>
-      <button (click)="toggleTheme()" style="background:transparent;color:#222;border:1px solid #e5e7eb;padding:4px 8px;border-radius:4px;cursor:pointer;font-size:0.8rem;">{{ i18n.t('theme') }}</button>
+      <button (click)="toggleTheme()">{{ i18n.t('theme') }}</button>
     </div>
 
     <!-- Hamburger mobile -->

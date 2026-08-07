@@ -1,5 +1,4 @@
 import { Component, AfterViewInit, OnDestroy } from '@angular/core';
-import { LottiePlayer } from '../lottie-player/lottie-player';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 import { Router } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
@@ -7,7 +6,7 @@ import { I18nService } from '../../services/i18n.service';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [LottiePlayer, AnimateOnScrollDirective],
+  imports: [AnimateOnScrollDirective],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

@@ -92,6 +92,37 @@
 .banner-sub { color: rgba(255,255,255,0.85); font-size:14px; text-align:center; margin:0 0 10px 0; }
 .banner-highlight { color: #ffea00; font-weight:700; text-align:center; margin:0; }
 
+.hero-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.hero-linkedin:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: #fff;
+  transform: translateY(-1px);
+}
+:host-context([data-theme="light"]) .hero-linkedin {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.15);
+  color: #111;
+}
+:host-context([data-theme="light"]) .hero-linkedin:hover {
+  background: rgba(0,0,0,0.08);
+  border-color: #111;
+}
+
 @media (min-width: 1200px) {
   .banner-title { font-size: 36px; }
   .hero-banner-box { padding: 36px 48px; }

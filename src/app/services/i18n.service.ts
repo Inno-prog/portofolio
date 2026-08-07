@@ -14,6 +14,7 @@ export class I18nService {
       nav_portfolio: 'Portfolio',
       nav_contact: 'Contact',
       nav_services: 'Services',
+      contact_socials_title: 'Mes réseaux',
       hero_greeting: "Bonjour je m'appelle",
       hero_role: 'développeur web/mobile',
       hero_contact_cta: 'contactez moi',
@@ -84,6 +85,11 @@ export class I18nService {
       springCert: 'Spring Boot REST API',
       flutterCert: 'Flutter Mobile Dev',
       autoPractice: 'Auto-formation & pratique',
+      // Certifications officielles
+      backendCert: 'Développement Backend',
+      backendCertOrg: 'Certification officielle',
+      iaCert: 'Apprentissage & Automatisation — Intelligence Artificielle',
+      iaCertOrg: 'Certification officielle',
       // Languages
       french: 'Français',
       english: 'Anglais',
@@ -98,6 +104,7 @@ export class I18nService {
       nav_portfolio: 'Portfolio',
       nav_contact: 'Contact',
       nav_services: 'Services',
+      contact_socials_title: 'My networks',
       hero_greeting: "Hello my name is",
       hero_role: 'web/mobile developer',
       hero_contact_cta: 'contact me',
@@ -170,6 +177,11 @@ export class I18nService {
       springCert: 'Spring Boot REST API',
       flutterCert: 'Flutter Mobile Dev',
       autoPractice: 'Self-learning & practice',
+      // Certifications officielles
+      backendCert: 'Backend Development',
+      backendCertOrg: 'Official Certification',
+      iaCert: 'Machine Learning & Automation — Artificial Intelligence',
+      iaCertOrg: 'Official Certification',
       // Languages
       french: 'French',
       english: 'English',

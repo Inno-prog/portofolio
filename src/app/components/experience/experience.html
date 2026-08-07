@@ -16,17 +16,23 @@
     <div class="page-col anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
       <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('skillsTitle') }}</h2>
       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
-      <div class="skills-hero anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-        <img src="/assets/skills.png" alt="skills" class="skills-img" />
-      </div>
       <div class="domains stagger" [animateOnScroll]="'anim-fade-up-show'">
         @for (d of domains; track d.tKey) {
           <div class="domain-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-            <div class="domain-title">{{ i18n.t(d.tKey) }}</div>
-            <div class="domain-desc">{{ i18n.t(d.descKey) }}</div>
-            <div class="tech-list">
-              @for (t of d.techs; track t) {
-                <span class="tech">{{ t }}</span>
+            <div class="domain-header">
+              <span class="domain-icon">{{ d.icon }}</span>
+              <div>
+                <div class="domain-title">{{ i18n.t(d.tKey) }}</div>
+                <div class="domain-desc">{{ i18n.t(d.descKey) }}</div>
+              </div>
+            </div>
+            <div class="tech-tree">
+              @for (t of d.techs; track t.name; let i = $index) {
+                <a [href]="t.url" target="_blank" rel="noopener noreferrer" class="tech-node">
+                  <span class="tech-branch"></span>
+                  <span class="tech-icon">{{ t.icon }}</span>
+                  <span class="tech-name">{{ t.name }}</span>
+                </a>
               }
             </div>
           </div>
@@ -38,12 +44,18 @@
     <div class="page-col anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
       <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('formation') }}</h2>
       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
-      <div class="stagger" [animateOnScroll]="'anim-fade-up-show'">
+      <div class="timeline stagger" [animateOnScroll]="'anim-fade-up-show'">
         @for (f of formations; track f.diplome) {
-          <div class="stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-            <p class="col-subtitle">{{ f.diplome }}</p>
-            <p class="exp-company">{{ f.etablissement }}</p>
-            <p class="exp-period">{{ f.annee }}</p>
+          <div class="timeline-item stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-title">{{ f.diplome }}</div>
+              <div class="timeline-sub">{{ f.etablissement }}</div>
+              <div class="timeline-period">{{ f.annee }}</div>
+              @if (f.commentaire) {
+                <div class="timeline-comment">{{ f.commentaire }}</div>
+              }
+            </div>
           </div>
         }
       </div>
@@ -60,6 +72,12 @@
             <div>
               <div class="expertise-title">{{ i18n.t(cert.titreKey) }}</div>
               <div class="expertise-desc">{{ i18n.t(cert.orgKey) }}</div>
+              @if (cert.image) {
+                <a [href]="cert.image" target="_blank" class="cert-img-link">
+                  <img [src]="cert.image" [alt]="i18n.t(cert.titreKey)" class="cert-img" />
+                  <span class="cert-view">🔍 Voir</span>
+                </a>
+              }
             </div>
           </div>
         }
@@ -71,6 +89,7 @@
         @for (lang of langues; track lang.nomKey) {
           <div class="stagger-child lang-item anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
             <div class="lang-row">
+              <span class="lang-flag">{{ lang.flag }}</span>
               <span>{{ i18n.t(lang.nomKey) }}</span><span class="lang-level">{{ i18n.t(lang.niveauKey) }}</span>
             </div>
             <div class="lang-bar">

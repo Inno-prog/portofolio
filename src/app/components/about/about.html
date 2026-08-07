@@ -23,18 +23,28 @@
 
       <div style="margin-top:2rem;">
   <h3 class="col-subtitle" style="margin-bottom:1rem;">{{ i18n.t('competencies_title') }}</h3>
-      <div class="stagger anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
-        @for (skill of skills; track skill.category) {
-          <div class="stagger-child" style="margin-bottom:0.8rem;">
-            <div style="display:flex;justify-content:space-between;font-size:0.8rem;color:#444;margin-bottom:4px;">
-              <span>{{ skill.category }}</span>
+        <div class="tree anim-slide-right" [animateOnScroll]="'anim-slide-right-show'">
+          @for (skill of skills; track skill.category) {
+            <div class="tree-item stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+              <div class="tree-branch"></div>
+              <div class="tree-content">
+                <div class="tree-header">
+                  @if (skill.url) {
+                    <a [href]="skill.url" target="_blank" rel="noopener noreferrer" class="tree-link">
+                      <span class="tree-icon">{{ skill.icon }}</span>
+                      <span class="tree-title">{{ skill.category }}</span>
+                    </a>
+                  } @else {
+                    <span class="tree-icon">{{ skill.icon }}</span>
+                    <span class="tree-title">{{ skill.category }}</span>
+                  }
+                  <span class="tree-level">{{ skill.level }}</span>
+                </div>
+                <div class="tree-bar"><div [style.width]="skill.level" class="tree-fill"></div></div>
+              </div>
             </div>
-            <div style="background:#e5e7eb;border-radius:4px;height:6px;">
-              <div [style.width]="skill.level" class="anim-pulse" style="background:#f97316;height:6px;border-radius:4px;"></div>
-            </div>
-          </div>
-        }
-      </div>
+          }
+        </div>
       </div>
     </div>
 
@@ -43,17 +53,33 @@
   <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('personal_info_title') }}</h2>
       <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
-      <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+      <div class="tree anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
         @for (info of personalInfo; track info.label) {
-          <p class="col-label stagger-child"><span>{{ i18n.t(info.label) || info.label }}</span> : {{ info.value }}</p>
+          <div class="tree-item stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            <div class="tree-branch"></div>
+            <div class="tree-content">
+              <div class="tree-split">
+                <span class="tree-title">{{ i18n.t(info.label) || info.label }}</span>
+                <span class="tree-value">{{ info.value }}</span>
+              </div>
+            </div>
+          </div>
         }
       </div>
 
-      <div class="stagger anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">
+      <div class="tree anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'" style="margin-top:2rem;">
         @for (social of socials; track social.label) {
-          <a [href]="social.url" target="_blank" class="stagger-child anim-pulse" style="display:flex;align-items:center;gap:0.8rem;color:#f97316;font-size:1.3rem;text-decoration:none;margin-top:0.5rem;">
-            {{ social.icon }}
-          </a>
+          <div class="tree-item stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+            <div class="tree-branch"></div>
+            <div class="tree-content">
+              <div class="tree-split">
+                <a [href]="social.url" target="_blank" rel="noopener noreferrer" class="tree-link">
+                  <span class="tree-icon">{{ social.icon }}</span>
+                  <span class="tree-title">{{ social.label }}</span>
+                </a>
+              </div>
+            </div>
+          </div>
         }
       </div>
     </div>
@@ -63,13 +89,18 @@
   <h2 class="col-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('expertise_title') }}</h2>
       <div class="col-underline anim-scale-up" [animateOnScroll]="'anim-scale-up-show'"></div>
 
-      <div class="stagger anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+      <div class="tree anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
         @for (exp of expertise; track exp.title) {
-          <div class="expertise-item stagger-child anim-float">
-            <div class="expertise-icon">{{ exp.icon }}</div>
-            <div>
-              <div class="expertise-title">{{ exp.title }}</div>
-              <div class="expertise-desc">{{ exp.desc }}</div>
+          <div class="tree-item stagger-child anim-float">
+            <div class="tree-branch"></div>
+            <div class="tree-content">
+              <div class="tree-split">
+                <span class="tree-icon">{{ exp.icon }}</span>
+                <div class="tree-expertise-text">
+                  <div class="tree-title">{{ exp.title }}</div>
+                  <div class="tree-desc">{{ exp.desc }}</div>
+                </div>
+              </div>
             </div>
           </div>
         }

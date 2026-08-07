@@ -17,11 +17,11 @@ export class About {
   }
 
   skills = [
-    { category: 'Angular / TypeScript', level: '85%' },
-    { category: 'Spring Boot / Java', level: '80%' },
-    { category: 'Flutter / Dart', level: '70%' },
-    { category: 'PostgreSQL / MySQL', level: '75%' },
-    { category: 'Docker / Git', level: '65%' },
+    { category: 'Angular / TypeScript', level: '85%', icon: '🅰️', url: 'https://angular.dev/' },
+    { category: 'Spring Boot / Java', level: '80%', icon: '🍃', url: 'https://spring.io/projects/spring-boot' },
+    { category: 'Flutter / Dart', level: '70%', icon: '💙', url: 'https://flutter.dev/' },
+    { category: 'PostgreSQL / MySQL', level: '75%', icon: '🐘', url: 'https://www.postgresql.org/' },
+    { category: 'Docker / Git', level: '65%', icon: '🐳', url: 'https://www.docker.com/' },
   ];
 
   personalInfo = [

@@ -277,4 +277,10 @@
 
   .col-title { font-size: 1.2rem; }
   .cert-img { width: 144px; max-height: 144px; }
+
+  /* Centrer la palette (langue / thème) sur mobile au lieu de la coller au bord */
+  .controls {
+    justify-content: center !important;
+    padding: 0.4rem 1rem 0 1rem !important;
+  }
 }

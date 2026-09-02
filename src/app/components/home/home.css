@@ -13,5 +13,14 @@
 :host ::ng-deep app-projects .page-layout,
 :host ::ng-deep app-contact .page-layout {
   min-height: auto;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
+}
+
+/* Réduire l'espace au-dessus des titres de la section About */
+:host ::ng-deep app-about .page-layout {
+  padding-top: 0;
+}
+:host ::ng-deep app-about .controls {
+  padding-top: 0.2rem !important;
+  padding-bottom: 0.2rem !important;
 }

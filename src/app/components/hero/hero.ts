@@ -11,14 +11,9 @@ import { I18nService } from '../../services/i18n.service';
   styleUrl: './hero.css',
 })
 export class Hero implements AfterViewInit, OnDestroy {
-  private animId = 0;
-  services = ['Codage', 'Installation', 'Activation', 'Maintenance'];
-  visibleCount = 0;
-  highlightedIndex = -1;
-  circleRotation = 0;
-  private highlightTimer?: number;
-  private loopTimer?: number;
-  private spinTimer?: number;
+  private waveAnimId = 0;
+  private typingTimer?: number;
+  private resizeHandlers: (() => void)[] = [];
 
   constructor(private router: Router, public i18n: I18nService) {}
 
@@ -27,93 +22,95 @@ export class Hero implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.startServiceAnimation();
-    this.startSpin();
+    this.initWaveCanvas();
+    this.initTypingEffect();
+  }
 
-    const canvas = document.getElementById('starsCanvas') as HTMLCanvasElement;
+  private initWaveCanvas() {
+    const canvas = document.getElementById('waveCanvas') as HTMLCanvasElement | null;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
-    const resize = () => { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; };
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
     resize();
     window.addEventListener('resize', resize);
+    this.resizeHandlers.push(resize);
 
-    const stars = Array.from({ length: 160 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.2,
-      speed: Math.random() * 0.8 + 0.2,
-      opacity: Math.random() * 0.7 + 0.3,
-      phase: Math.random() * Math.PI * 2,
-      tail: Math.random() * 8 + 3,
-    }));
+    let t = 0;
 
-    const animate = () => {
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.fillStyle = 'rgba(0,0,0,0.06)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.globalCompositeOperation = 'lighter';
+    const drawWaves = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      for (const s of stars) {
-        s.y += s.speed;
-        s.phase += 0.025;
-        if (s.y - s.tail > canvas.height) { s.y = -s.tail; s.x = Math.random() * canvas.width; }
-        const alpha = s.opacity * (0.5 + 0.5 * Math.sin(s.phase));
-        const grad = ctx.createLinearGradient(s.x, s.y - s.tail, s.x, s.y);
-        grad.addColorStop(0, `rgba(255,255,255,0)`);
-        grad.addColorStop(1, `rgba(255,255,255,${alpha})`);
-        ctx.beginPath(); ctx.moveTo(s.x, s.y - s.tail); ctx.lineTo(s.x, s.y);
-        ctx.strokeStyle = grad; ctx.lineWidth = s.r * 0.8; ctx.stroke();
-        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${alpha})`; ctx.fill();
+      const totalWaves = 5;
+      const baseAlpha = 0.045;
+
+      for (let i = 0; i < totalWaves; i++) {
+        const yBase = canvas.height * (0.3 + i * 0.14);
+        const amp = 18 + i * 6;
+        const freq = 0.008 - i * 0.001;
+        const speed = 0.6 + i * 0.3;
+        const alpha = baseAlpha + i * 0.018;
+
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height);
+
+        for (let x = 0; x <= canvas.width; x += 3) {
+          const y = yBase
+            + Math.sin(x * freq + t * speed) * amp
+            + Math.sin(x * freq * 1.7 + t * speed * 0.8 + i) * (amp * 0.5);
+          ctx.lineTo(x, y);
+        }
+
+        ctx.lineTo(canvas.width, canvas.height);
+        ctx.closePath();
+
+        const grad = ctx.createLinearGradient(0, yBase - amp, 0, canvas.height);
+        grad.addColorStop(0, `rgba(0, 220, 255, ${alpha})`);
+        grad.addColorStop(0.5, `rgba(0, 180, 200, ${alpha * 0.7})`);
+        grad.addColorStop(1, `rgba(0, 100, 160, ${alpha * 0.4})`);
+        ctx.fillStyle = grad;
+        ctx.fill();
       }
-      this.animId = requestAnimationFrame(animate);
+
+      t += 0.012;
+      this.waveAnimId = requestAnimationFrame(drawWaves);
     };
-    animate();
+    drawWaves();
   }
 
-  private startSpin() {
-    const step = () => {
-      this.circleRotation = (this.circleRotation + 0.15) % 360;
-      this.spinTimer = window.setTimeout(step, 16);
+  private initTypingEffect() {
+    const phrases = [
+      'développeur web & mobile',
+      "créateur d'expériences UI",
+      'passionné de code propre',
+      'disponible pour vos projets'
+    ];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typingWord');
+
+    const type = () => {
+      if (!el) return;
+      const word = phrases[pi];
+      if (!deleting) {
+        el.textContent = word.slice(0, ++ci);
+        if (ci === word.length) { deleting = true; this.typingTimer = window.setTimeout(type, 1800); return; }
+      } else {
+        el.textContent = word.slice(0, --ci);
+        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+      }
+      this.typingTimer = window.setTimeout(type, deleting ? 45 : 90);
     };
-    step();
-  }
-
-  private startServiceAnimation() {
-    const services = this.services;
-
-    services.forEach((_, index) => {
-      this.highlightTimer = window.setTimeout(() => {
-        this.visibleCount = index + 1;
-      }, 600 + index * 400);
-    });
-
-    const initialRevealDuration = 600 + services.length * 400 + 500;
-    this.loopTimer = window.setTimeout(() => {
-      this.startHighlightLoop();
-    }, initialRevealDuration);
-  }
-
-  private startHighlightLoop() {
-    let currentHighlight = 0;
-
-    const runLoop = () => {
-      this.highlightedIndex = currentHighlight;
-
-      this.loopTimer = window.setTimeout(() => {
-        currentHighlight = (currentHighlight + 1) % this.services.length;
-        runLoop();
-      }, 1500);
-    };
-
-    runLoop();
+    this.typingTimer = window.setTimeout(type, 1500);
   }
 
   ngOnDestroy() {
-    cancelAnimationFrame(this.animId);
-    if (this.highlightTimer) clearTimeout(this.highlightTimer);
-    if (this.loopTimer) clearTimeout(this.loopTimer);
-    if (this.spinTimer) clearTimeout(this.spinTimer);
+    cancelAnimationFrame(this.waveAnimId);
+    if (this.typingTimer) clearTimeout(this.typingTimer);
+    for (const h of this.resizeHandlers) window.removeEventListener('resize', h);
+    this.resizeHandlers = [];
   }
 }

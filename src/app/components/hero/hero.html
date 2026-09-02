@@ -1,11 +1,5 @@
 <section class="relative overflow-hidden bg-[#0a0a14] min-h-[78vh]">
 
-  <!-- EAU REELLE des deux côtés -->
-  <div class="water-container">
-    <canvas class="water-canvas water-left" id="waterLeft"></canvas>
-    <canvas class="water-canvas water-right" id="waterRight"></canvas>
-  </div>
-
   <!-- Image fond : natural-size centered, don't upscale -->
    <img data-hero-bg 
         src="assets/photo.jpeg" 
@@ -18,11 +12,8 @@
   <!-- Overlay sombre -->
   <div class="absolute inset-0 z-0 hero-overlay" style="background: rgba(10,10,20,0.65);"></div>
 
-  <!-- Étoiles -->
-  <canvas id="starsCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
-
   <!-- Contenu pyramide (texte fourni par l'utilisateur) -->
-  <div class="relative z-20 h-full flex flex-col items-center justify-center py-12 px-6 text-center">
+  <div class="relative z-20 h-full flex flex-col items-center justify-start py-12 px-6 text-center">
 
   <!-- VAGUES PISCINE (sans fond, juste les ondulations) -->
   <canvas id="waveCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
@@ -71,6 +62,7 @@
       font-size: clamp(2.5rem, 7vw, 5.5rem);
       background: linear-gradient(90deg, #00f5a0, #00d9f5, #007cf0);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .line-3, .line-4 {
@@ -123,292 +115,16 @@
          <div class="hero-banner-box anim-fade-in" [animateOnScroll]="'anim-fade-in-show'">
           <p class="banner-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('hero_greeting') }} <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">DEMBELE Innocode</span>, {{ i18n.t('hero_role') }}. Pour tous vos projets, <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ i18n.t('hero_contact_cta') }}</span></p>
       </div>
-
-      <!-- Rotating service circle -->
-      <div class="hero-service-circle-wrap">
-        <div class="hero-service-circle" [style.transform]="'rotate(' + circleRotation + 'deg)'">
-          @for (service of services; track $index) {
-            <span class="hero-service-circle-item"
-                  [class.hero-service-highlighted]="highlightedIndex === $index"
-                  [style.transform]="'rotate(' + ($index * 90) + 'deg) translateX(120px) rotate(-' + circleRotation + 'deg)'"
-                  [style.opacity]="$index < visibleCount ? 1 : 0"
-                  [style.transition]="'opacity 0.6s ease-out, color 0.5s ease-in-out'">
-              {{ service }}
-            </span>
-          }
-        </div>
-        <div class="hero-service-center-dot"></div>
-      </div>
     </div>
    </div>
 
-  <!-- SCRIPTS -->
-  <script>
-    // ---- VAGUES PISCINE ----
-    const canvas = document.getElementById('waveCanvas');
-    const ctx    = canvas.getContext('2d');
-
-    function resize() {
-      canvas.width  = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    let t = 0;
-
-    function drawWaves() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const totalWaves = 5;
-      const baseAlpha  = 0.045;
-
-      for (let i = 0; i < totalWaves; i++) {
-        const yBase    = canvas.height * (0.3 + i * 0.14);
-        const amp      = 18 + i * 6;
-        const freq     = 0.008 - i * 0.001;
-        const speed    = 0.6 + i * 0.3;
-        const alpha    = baseAlpha + i * 0.018;
-
-        ctx.beginPath();
-        ctx.moveTo(0, canvas.height);
-
-        for (let x = 0; x <= canvas.width; x += 3) {
-          const y = yBase
-            + Math.sin(x * freq + t * speed) * amp
-            + Math.sin(x * freq * 1.7 + t * speed * 0.8 + i) * (amp * 0.5);
-          ctx.lineTo(x, y);
-        }
-
-        ctx.lineTo(canvas.width, canvas.height);
-        ctx.closePath();
-
-        const grad = ctx.createLinearGradient(0, yBase - amp, 0, canvas.height);
-        grad.addColorStop(0,   `rgba(0, 220, 255, ${alpha})`);
-        grad.addColorStop(0.5, `rgba(0, 180, 200, ${alpha * 0.7})`);
-        grad.addColorStop(1,   `rgba(0, 100, 160, ${alpha * 0.4})`);
-        ctx.fillStyle = grad;
-        ctx.fill();
-      }
-
-      t += 0.012;
-      requestAnimationFrame(drawWaves);
-    }
-    drawWaves();
-
-    // ---- REALISTIC WATER SIMULATION (both sides) ----
-    const waterLeft  = document.getElementById('waterLeft');
-    const waterRight = document.getElementById('waterRight');
-    if (!waterLeft || !waterRight) {
-      console.warn('Water canvases not found');
-    } else {
-    const ctxL = waterLeft.getContext('2d');
-    const ctxR = waterRight.getContext('2d');
-
-    const waterParticles = [];
-    const numParticles = 120;
-
-    function resizeWaterCanvases() {
-      const w = window.innerWidth / 2;
-      const h = window.innerHeight;
-      waterLeft.width  = w;
-      waterLeft.height = h;
-      waterRight.width = w;
-      waterRight.height = h;
-      waterLeft.style.width  = w + 'px';
-      waterLeft.style.height = h + 'px';
-      waterRight.style.width = w + 'px';
-      waterRight.style.height = h + 'px';
-    }
-    resizeWaterCanvases();
-    window.addEventListener('resize', resizeWaterCanvases);
-
-    function createWaterParticles() {
-      waterParticles.length = 0;
-      for (let i = 0; i < numParticles; i++) {
-        // start particles above the canvas so they fall down like a waterfall
-        waterParticles.push({
-          y: (Math.random() * 0.4 - 0.6) * h, // start above the top
-          x: Math.random() * w,
-          radius: Math.random() * 3 + 1,
-          speedY: Math.random() * 0.6 + 0.6,   // positive -> falling down
-          speedX: (Math.random() - 0.5) * 0.6,
-          life: Math.random() * 0.6 + 0.4,
-          maxLife: 1,
-          isDrip: Math.random() > 0.65,
-          waveOffset: Math.random() * Math.PI * 2
-        });
-      }
-    }
-    createWaterParticles();
-
-    let waterTime = 0;
-
-    function drawWaterSide(ctx, side) {
-      const w = ctx.canvas.width;
-      const h = ctx.canvas.height;
-      
-      ctx.clearRect(0, 0, w, h);
-
-      const waterHeight = h * 0.75;
-      
-      const waterGrad = ctx.createLinearGradient(0, h - waterHeight, 0, h);
-      waterGrad.addColorStop(0,   'rgba(0, 180, 240, 0.08)');
-      waterGrad.addColorStop(0.3, 'rgba(0, 160, 220, 0.15)');
-      waterGrad.addColorStop(0.6, 'rgba(0, 140, 210, 0.25)');
-      waterGrad.addColorStop(0.8, 'rgba(0, 120, 200, 0.4)');
-      waterGrad.addColorStop(1,   'rgba(0, 100, 190, 0.6)');
-
-      ctx.beginPath();
-      ctx.moveTo(0, h);
-      ctx.lineTo(0, h - waterHeight);
-      
-      const waveAmp = 25;
-      const waveFreq = 0.02;
-      
-      for (let x = 0; x <= w; x += 5) {
-        const waveY = (h - waterHeight) 
-          + Math.sin(x * waveFreq + waterTime * 1.5) * waveAmp * 0.5
-          + Math.sin(x * waveFreq * 2.3 + waterTime * 2 + side * 2) * waveAmp * 0.3
-          + Math.sin(x * waveFreq * 0.5 + waterTime) * waveAmp * 0.2;
-        ctx.lineTo(x, waveY);
-      }
-      
-      ctx.lineTo(w, h);
-      ctx.closePath();
-      ctx.fillStyle = waterGrad;
-      ctx.fill();
-
-      ctx.strokeStyle = 'rgba(100, 200, 255, 0.15)';
-      ctx.lineWidth = 2;
-      
-      for (let i = 0; i < 8; i++) {
-        const streamX = (w / 9) * (i + 1);
-        ctx.beginPath();
-        ctx.moveTo(streamX, h - waterHeight);
-        
-        for (let y = h - waterHeight; y < h; y += 8) {
-          const offset = Math.sin(y * 0.03 + waterTime * 3 + i) * 15;
-          ctx.lineTo(streamX + offset, y);
-        }
-        ctx.stroke();
-      }
-
-      ctx.globalCompositeOperation = 'screen';
-      
-      const highlightGrad = ctx.createLinearGradient(0, h - waterHeight - 20, 0, h - waterHeight + 30);
-      highlightGrad.addColorStop(0, 'rgba(255, 255, 255, 0)');
-      highlightGrad.addColorStop(0.3, `rgba(200, 240, 255, ${0.15 * Math.abs(Math.sin(waterTime * 0.5))})`);
-      highlightGrad.addColorStop(0.7, 'rgba(255, 255, 255, 0)');
-      highlightGrad.addColorStop(1, 'rgba(255, 255, 255, 0)');
-      
-      ctx.fillStyle = highlightGrad;
-      ctx.beginPath();
-      for (let x = 0; x <= w; x += 5) {
-        const waveY = (h - waterHeight) + Math.sin(x * waveFreq + waterTime) * waveAmp;
-        if (x === 0) ctx.moveTo(x, waveY);
-        else ctx.lineTo(x, waveY);
-      }
-      ctx.lineTo(w, h - waterHeight);
-      ctx.lineTo(0, h - waterHeight);
-      ctx.closePath();
-      ctx.fill();
-      
-      ctx.globalCompositeOperation = 'source-over';
-
-      for (const p of waterParticles) {
-        const px = side === 1 ? w - (p.x % w) : p.x;
-        // apply a subtle horizontal wave effect
-        const waveEffect = Math.sin(px * 0.02 + waterTime * 2 + p.waveOffset) * 2.5;
-
-        // falling: increase y
-        p.y += p.speedY;
-        p.x += p.speedX + waveEffect * 0.08;
-
-        // when particle passes the bottom, create a splash and reset above
-        const screenY = p.y;
-        if (p.y > h + p.radius) {
-          // reset to slightly above the visible area
-          p.y = (Math.random() * 0.4 - 0.6) * h;
-          p.x = Math.random() * w;
-          p.speedY = Math.random() * 0.6 + 0.6;
-        }
-        if (p.x < -p.radius) p.x = w + p.radius;
-        if (p.x > w + p.radius) p.x = -p.radius;
-
-        // draw falling streak (a short vertical line + a droplet)
-        const tail = Math.max(6, p.radius * 4);
-        const grad = ctx.createLinearGradient(px, screenY - tail, px, screenY);
-        grad.addColorStop(0, 'rgba(255,255,255,0)');
-        grad.addColorStop(1, `rgba(200,230,255,${0.22 * p.life})`);
-        ctx.beginPath(); ctx.moveTo(px, screenY - tail); ctx.lineTo(px, screenY);
-        ctx.strokeStyle = grad; ctx.lineWidth = Math.max(1, p.radius * 0.9); ctx.stroke();
-
-        // droplet / splash at contact with lower water (visual only)
-        const bottomThreshold = h - (h * 0.08);
-        if (screenY > bottomThreshold) {
-          const splashSize = Math.min(12, p.radius * 3 + (screenY - bottomThreshold) * 0.02);
-          const dropGrad = ctx.createRadialGradient(px, bottomThreshold - 2, 0, px, bottomThreshold + splashSize / 2, splashSize);
-          dropGrad.addColorStop(0, `rgba(255,255,255,${0.35 * p.life})`);
-          dropGrad.addColorStop(0.5, `rgba(180,230,255,${0.12 * p.life})`);
-          dropGrad.addColorStop(1, 'rgba(0,150,240,0)');
-          ctx.beginPath(); ctx.arc(px, bottomThreshold + splashSize * 0.2, splashSize, 0, Math.PI * 2);
-          ctx.fillStyle = dropGrad; ctx.fill();
-        }
-      }
-
-      ctx.globalAlpha = 0.1;
-      for (let i = 0; i < 5; i++) {
-        const causticY = h - (i + 1) * 20;
-        ctx.strokeStyle = `rgba(100, 220, 255, ${0.3 * Math.abs(Math.sin(waterTime + i))})`;
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        for (let x = 0; x <= w; x += 10) {
-          const cy = causticY + Math.sin(x * 0.05 + waterTime * 2 + i) * 8;
-          if (x === 0) ctx.moveTo(x, cy);
-          else ctx.lineTo(x, cy);
-        }
-        ctx.stroke();
-      }
-      ctx.globalAlpha = 1;
-    }
-
-    function animateWater() {
-      waterTime += 0.016;
-      
-      drawWaterSide(ctxL, 0);
-      drawWaterSide(ctxR, 1);
-      
-      requestAnimationFrame(animateWater);
-    }
-    animateWater();
-    }
-    // ---- REALISTIC WATER SIMULATION (both sides) ----
-
-
-    // ---- TYPING EFFECT ----
-    const phrases = [
-      'développeur web & mobile',
-      'créateur d\'expériences UI',
-      'passionné de code propre',
-      'disponible pour vos projets'
-    ];
-    let pi = 0, ci = 0, deleting = false;
-    const el = document.getElementById('typingWord');
-
-    function type() {
-      const word = phrases[pi];
-      if (!deleting) {
-        el.textContent = word.slice(0, ++ci);
-        if (ci === word.length) { deleting = true; setTimeout(type, 1800); return; }
-      } else {
-        el.textContent = word.slice(0, --ci);
-        if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-      }
-      setTimeout(type, deleting ? 45 : 90);
-    }
-    setTimeout(type, 1500);
-  </script>
-
 </div>
+
+  <!-- Badges services à la frontière hero/about (absolus, sans agrandir le hero) -->
+  <div class="hero-services-row stagger anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
+    <span class="hero-service-tag stagger-child">Codage</span>
+    <span class="hero-service-tag stagger-child">Installation</span>
+    <span class="hero-service-tag stagger-child">Activation</span>
+    <span class="hero-service-tag stagger-child">Maintenance</span>
+  </div>
 </section>

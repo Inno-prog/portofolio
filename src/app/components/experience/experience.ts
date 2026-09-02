@@ -75,7 +75,7 @@ export class Experience {
   certifications = [
     { titreKey: 'angularCert', orgKey: 'autoPractice', image: null },
     { titreKey: 'springCert',  orgKey: 'autoPractice', image: null },
-    { titreKey: 'flutterCert', orgKey: 'autoPractice', image: null },
+    { titreKey: 'flutterCert', orgKey: 'autoPractice', image: '/assets/cert-flutter.png' },
     { titreKey: 'backendCert', orgKey: 'backendCertOrg', image: '/assets/cert-backend.png' },
     { titreKey: 'iaCert',      orgKey: 'iaCertOrg',      image: '/assets/cert-ia.png' },
   ];

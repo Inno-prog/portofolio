@@ -24,9 +24,14 @@
                   <span class="tech-pill anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ tech }}</span>
                 }
               </div>
-              @if (project.url) {
-                <a class="project-link" [href]="project.url" target="_blank">→ Voir le projet</a>
-              }
+              <div class="project-actions">
+                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">visibility</span> Demo
+                </a>
+                <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">code</span> GitHub
+                </a>
+              </div>
             </div>
           </article>
         }
@@ -60,6 +65,14 @@
                   <span class="tech-pill">{{ tech }}</span>
                 }
               </div>
+              <div class="project-actions">
+                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">visibility</span> Demo
+                </a>
+                <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">code</span> GitHub
+                </a>
+              </div>
             </div>
           </article>
         }
@@ -88,6 +101,14 @@
                 @for (tech of project.techs; track tech) {
                   <span class="tech-pill">{{ tech }}</span>
                 }
+              </div>
+              <div class="project-actions">
+                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">visibility</span> Demo
+                </a>
+                <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
+                  <span class="material-symbols-outlined">code</span> GitHub
+                </a>
               </div>
             </div>
           </article>

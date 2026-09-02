@@ -203,33 +203,44 @@
 .cert-img-link {
   display: inline-block;
   position: relative;
-  border-radius: 6px;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  margin-top: 0.4rem;
+  margin-top: 0.6rem;
+  background: #fff;
+  border: 1px solid rgba(20, 61, 89, 0.12);
+  box-shadow: 0 10px 25px rgba(20, 61, 89, 0.12);
+  transition: box-shadow 0.25s, transform 0.2s;
 }
 .cert-img {
-  width: 140px;
-  height: auto;
-  max-height: 100px;
-  object-fit: contain;
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.08);
   display: block;
-  transition: opacity 0.2s, transform 0.2s;
+  width: 176px;
+  height: auto;
+  max-height: 176px;
+  object-fit: contain;
+  border-radius: 12px;
+  transition: opacity 0.2s;
 }
-.cert-img-link:hover .cert-img { opacity: 0.85; transform: scale(1.02); }
+.cert-img-link:hover {
+  box-shadow: 0 16px 32px rgba(20, 61, 89, 0.20);
+  transform: translateY(-2px);
+}
+.cert-img-link:hover .cert-img { opacity: 0.9; }
 :host-context([data-theme="light"]) .cert-img { border-color: #e5e7eb; }
 
 .cert-view {
   position: absolute;
-  bottom: 0.4rem;
-  right: 0.4rem;
-  background: rgba(20,61,89,0.65);
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: #16a34a;
   color: #fff;
-  font-size: 0.7rem;
-  padding: 0.15rem 0.4rem;
-  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
 }
 
 .lang-item { margin-bottom:0.8rem; padding:14px 16px; border-radius:12px; background:#eff1f3; box-shadow: 0 6px 16px rgba(20,61,89,0.1); }
@@ -265,5 +276,5 @@
   }
 
   .col-title { font-size: 1.2rem; }
-  .cert-img { width: 120px; max-height: 80px; }
+  .cert-img { width: 144px; max-height: 144px; }
 }

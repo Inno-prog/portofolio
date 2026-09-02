@@ -173,13 +173,13 @@
 }
 
 :host-context([data-theme="dark"]) .nav-controls button.active {
-  background: rgba(249,115,22,0.16);
-  border-color: rgba(249,115,22,0.45);
+  background: rgba(22,163,74,0.16);
+  border-color: rgba(22,163,74,0.45);
   color: #ffffff;
 }
 
 :host-context([data-theme="dark"]) .nav-controls button:focus-visible {
-  outline: 2px solid rgba(249,115,22,0.6);
+  outline: 2px solid rgba(22,163,74,0.6);
   outline-offset: 2px;
 }
 

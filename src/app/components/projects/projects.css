@@ -133,23 +133,57 @@
   width: 100%;
   max-width: 420px;
   text-align: center;
-  padding-bottom: 1.25rem;
-  border-bottom: 1px solid rgba(229, 231, 235, 0.9);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(20, 61, 89, 0.15);
+  transition: box-shadow 0.25s, transform 0.3s;
 }
 
-:host-context([data-theme="dark"]) .project-card {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+.project-card:hover {
+  box-shadow: 0 16px 40px rgba(20, 61, 89, 0.22);
+  transform: scale(1.01);
+}
+
+/* Card header : bandeau coloré faso-app */
+.project-card-header {
+  background: #143D59;
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.project-card-header.header-alt {
+  background: #16a34a;
+}
+
+.project-card-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #fff;
+}
+
+/* Card body : fond gris clair faso-app */
+.project-card-body {
+  background: #eff1f3;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .project-card:last-child {
-  border-bottom: none;
   padding-bottom: 0;
 }
 
 .project-image {
   display: flex;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 
 .project-image img {
@@ -157,8 +191,9 @@
   height: auto;
   object-fit: contain;
   border-radius: 8px;
-  border: 1px solid rgba(229, 231, 235, 0.9);
-  margin-bottom: 0.75rem;
+  border: 1px solid #dcdfe3;
+  background: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .project-image.web-img img {
@@ -174,8 +209,11 @@
   opacity: 0.5;
 }
 
-:host-context([data-theme="dark"]) .project-image img {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Description dans le corps de carte (fond clair faso-app) : texte marine lisible */
+.project-card-body .col-text {
+  color: #143D59;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .techs {
@@ -187,18 +225,21 @@
 }
 
 .tech-pill {
-  padding: 2px 8px;
+  padding: 4px 10px;
   border: 1px solid #16a34a;
   color: #16a34a;
   font-size: 0.75rem;
-  border-radius: 4px;
+  font-weight: 500;
+  border-radius: 6px;
+  background: #fff;
 }
 
 .project-link {
   display: inline-block;
   margin-top: 0.5rem;
   color: #16a34a;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 .project-link:hover {

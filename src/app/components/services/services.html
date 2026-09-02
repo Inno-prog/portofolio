@@ -6,19 +6,23 @@
   </h2>
 
   <div class="services-grid stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-    @for (service of services; track service.titleKey) {
-      <div class="service-card stagger-child">
-        <div class="card-icon" aria-hidden="true">
-          <div [innerHTML]="service.svg"></div>
-        </div>
-        <h3 class="card-title">{{ i18n.t(service.titleKey) }}</h3>
-        <p class="card-desc">{{ i18n.t(service.descKey) }}</p>
-        @if (service.image) {
-          <div class="card-image">
-            <img [src]="service.image" [alt]="i18n.t(service.titleKey)">
+    @for (service of services; track service.titleKey; let i = $index) {
+      <article class="service-card stagger-child">
+        <div class="card-header" [class.card-header-alt]="i % 2 === 1">
+          <div class="card-icon" aria-hidden="true">
+            <div [innerHTML]="service.svg"></div>
           </div>
-        }
-      </div>
+          <h3 class="card-title">{{ i18n.t(service.titleKey) }}</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-desc">{{ i18n.t(service.descKey) }}</p>
+          @if (service.image) {
+            <div class="card-image">
+              <img [src]="service.image" [alt]="i18n.t(service.titleKey)">
+            </div>
+          }
+        </div>
+      </article>
     }
   </div>
 </div>

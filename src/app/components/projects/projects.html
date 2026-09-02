@@ -7,26 +7,27 @@
       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
       <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-        @for (project of webProjects; track project.title) {
-          <article class="project-card stagger-child anim-scale-up anim-float" [animateOnScroll]="'anim-scale-up-show'">
-            @if (project.img) {
-              <div class="project-image web-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-                <img [src]="project.img" [alt]="project.title" />
+        @for (project of webProjects; track project.title; let i = $index) {
+          <article class="project-card stagger-child anim-float" [animateOnScroll]="'anim-scale-up-show'">
+            <div class="project-card-header" [class.header-alt]="i % 2 === 1">
+              <p class="project-card-title">{{ project.title }}</p>
+            </div>
+            <div class="project-card-body">
+              @if (project.img) {
+                <div class="project-image web-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                  <img [src]="project.img" [alt]="project.title" />
+                </div>
+              }
+              <p class="col-text anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">{{ project.desc }}</p>
+              <div class="techs">
+                @for (tech of project.techs; track tech) {
+                  <span class="tech-pill anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ tech }}</span>
+                }
               </div>
-            }
-
-            <p class="col-subtitle anim-slide-left" [animateOnScroll]="'anim-slide-left-show'">{{ project.title }}</p>
-            <p class="col-text anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">{{ project.desc }}</p>
-
-            <div class="techs">
-              @for (tech of project.techs; track tech) {
-                <span class="tech-pill anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ tech }}</span>
+              @if (project.url) {
+                <a class="project-link" [href]="project.url" target="_blank">→ Voir le projet</a>
               }
             </div>
-
-            @if (project.url) {
-              <a class="project-link" [href]="project.url" target="_blank">→ Voir le projet</a>
-            }
           </article>
         }
       </div>
@@ -38,25 +39,27 @@
       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
       <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-        @for (project of mobileProjects; track project.title) {
+        @for (project of mobileProjects; track project.title; let i = $index) {
           <article class="project-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-            @if (project.img) {
-              <div class="project-image mobile-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-                <img [src]="project.img" [alt]="project.title" />
-              </div>
-            } @else {
-              <div class="project-image mobile-img" style="display:flex;justify-content:center;">
-                <div class="mobile-placeholder">📱</div>
-              </div>
-            }
-
-            <p class="col-subtitle">{{ project.title }}</p>
-            <p class="col-text">{{ project.desc }}</p>
-
-            <div class="techs">
-              @for (tech of project.techs; track tech) {
-                <span class="tech-pill">{{ tech }}</span>
+            <div class="project-card-header" [class.header-alt]="i % 2 === 1">
+              <p class="project-card-title">{{ project.title }}</p>
+            </div>
+            <div class="project-card-body">
+              @if (project.img) {
+                <div class="project-image mobile-img anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                  <img [src]="project.img" [alt]="project.title" />
+                </div>
+              } @else {
+                <div class="project-image mobile-img" style="display:flex;justify-content:center;">
+                  <div class="mobile-placeholder">📱</div>
+                </div>
               }
+              <p class="col-text">{{ project.desc }}</p>
+              <div class="techs">
+                @for (tech of project.techs; track tech) {
+                  <span class="tech-pill">{{ tech }}</span>
+                }
+              </div>
             </div>
           </article>
         }
@@ -69,21 +72,23 @@
       <div class="col-underline anim-fade-down" [animateOnScroll]="'anim-fade-down-show'"></div>
 
       <div class="col-content stagger anim-scale-up" [animateOnScroll]="'anim-scale-up-show'">
-        @for (project of otherProjects; track project.title) {
+        @for (project of otherProjects; track project.title; let i = $index) {
           <article class="project-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-            @if (project.img) {
-              <div class="project-image anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
-                <img [src]="project.img" [alt]="project.title" />
-              </div>
-            }
-
-            <p class="col-subtitle">{{ project.title }}</p>
-            <p class="col-text">{{ project.desc }}</p>
-
-            <div class="techs">
-              @for (tech of project.techs; track tech) {
-                <span class="tech-pill">{{ tech }}</span>
+            <div class="project-card-header" [class.header-alt]="i % 2 === 1">
+              <p class="project-card-title">{{ project.title }}</p>
+            </div>
+            <div class="project-card-body">
+              @if (project.img) {
+                <div class="project-image anim-blur-in" [animateOnScroll]="'anim-blur-in-show'">
+                  <img [src]="project.img" [alt]="project.title" />
+                </div>
               }
+              <p class="col-text">{{ project.desc }}</p>
+              <div class="techs">
+                @for (tech of project.techs; track tech) {
+                  <span class="tech-pill">{{ tech }}</span>
+                }
+              </div>
             </div>
           </article>
         }

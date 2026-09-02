@@ -19,21 +19,21 @@
       <div class="domains stagger" [animateOnScroll]="'anim-fade-up-show'">
         @for (d of domains; track d.tKey) {
           <div class="domain-card stagger-child anim-fade-up" [animateOnScroll]="'anim-fade-up-show'">
-            <div class="domain-header">
+            <div class="domain-card-header">
               <span class="domain-icon">{{ d.icon }}</span>
-              <div>
-                <div class="domain-title">{{ i18n.t(d.tKey) }}</div>
-                <div class="domain-desc">{{ i18n.t(d.descKey) }}</div>
-              </div>
+              <div class="domain-title">{{ i18n.t(d.tKey) }}</div>
             </div>
-            <div class="tech-tree">
-              @for (t of d.techs; track t.name; let i = $index) {
-                <a [href]="t.url" target="_blank" rel="noopener noreferrer" class="tech-node">
-                  <span class="tech-branch"></span>
-                  <span class="tech-icon">{{ t.icon }}</span>
-                  <span class="tech-name">{{ t.name }}</span>
-                </a>
-              }
+            <div class="domain-card-body">
+              <div class="domain-desc">{{ i18n.t(d.descKey) }}</div>
+              <div class="tech-tree">
+                @for (t of d.techs; track t.name; let i = $index) {
+                  <a [href]="t.url" target="_blank" rel="noopener noreferrer" class="tech-node">
+                    <span class="tech-branch"></span>
+                    <span class="tech-icon">{{ t.icon }}</span>
+                    <span class="tech-name">{{ t.name }}</span>
+                  </a>
+                }
+              </div>
             </div>
           </div>
         }

@@ -92,7 +92,7 @@
   top: 0.4rem;
   bottom: 0.4rem;
   width: 2px;
-  background: rgba(249,115,22,0.35);
+  background: rgba(22,163,74,0.35);
   border-radius: 2px;
 }
 
@@ -107,7 +107,7 @@
   left: -1.05rem;
   width: 0.9rem;
   height: 2px;
-  background: rgba(249,115,22,0.55);
+  background: rgba(22,163,74,0.55);
   border-radius: 2px;
 }
 

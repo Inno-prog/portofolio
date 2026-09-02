@@ -372,8 +372,8 @@ body {
   50% { opacity: 0.85; transform: scale(0.97); }
 }
 @keyframes glowPulse {
-  0%, 100% { text-shadow: 0 0 8px rgba(249,115,22,0.3); }
-  50% { text-shadow: 0 0 20px rgba(249,115,22,0.6); }
+  0%, 100% { text-shadow: 0 0 8px rgba(22,163,74,0.3); }
+  50% { text-shadow: 0 0 20px rgba(22,163,74,0.6); }
 }
 @keyframes shimmerLoop {
   0% { background-position: -200% 0; }
@@ -391,7 +391,7 @@ body {
   animation: glowPulse 2s ease-in-out infinite;
 }
 .anim-shimmer-loop {
-  background: linear-gradient(90deg, transparent 0%, rgba(249,115,22,0.15) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(22,163,74,0.15) 50%, transparent 100%);
   background-size: 200% 100%;
   animation: shimmerLoop 2.5s linear infinite;
 }

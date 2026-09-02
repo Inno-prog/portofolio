@@ -10,7 +10,7 @@ footer {
 }
 
 :host-context([data-theme="dark"]) footer {
-  background: #0b1630;
+  background: #143D59;
   border-top: 1px solid rgba(255,255,255,0.04);
 }
 
@@ -33,7 +33,7 @@ footer {
 
 .footer-brand {
   font-weight: 600;
-  color: #111;
+  color: #143D59;
 }
 
 :host-context([data-theme="dark"]) .footer-brand {
@@ -59,7 +59,7 @@ footer {
 }
 
 .footer-icon:hover {
-  color: #f97316;
+  color: #16a34a;
 }
 
 @media (max-width: 640px) {

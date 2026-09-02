@@ -3,7 +3,7 @@
 }
 
 :host-context([data-theme="dark"]) .services-page {
-  background: #0b1630 !important;
+  background: #143D59 !important;
   color: #e6f0ff;
 }
 
@@ -20,7 +20,7 @@
 .services-heading {
   font-size: 2rem;
   font-weight: 700;
-  color: #111;
+  color: #143D59;
   margin-bottom: 3rem;
 }
 
@@ -28,9 +28,9 @@
 
 :host-context([data-theme="dark"]) .services-heading { color: #fff; }
 
-.orange { color: #f97316; }
+.orange { color: #16a34a; }
 
-.services-main { color: #111; }
+.services-main { color: #143D59; }
 
 :host-context([data-theme="dark"]) .services-main { color: #fff; }
 
@@ -82,7 +82,7 @@
 .card-title { 
   font-size: 1rem; 
   font-weight: 700; 
-  color: #111; 
+  color: #143D59; 
   margin-bottom: 0.6rem; 
   margin-top: 0.3rem; 
 }

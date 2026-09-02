@@ -4,7 +4,7 @@
 
 :host-context([data-theme="dark"]) .page-layout,
 :host-context([data-theme="dark"]) .page-col {
-  background: #0b1630 !important;
+  background: #143D59 !important;
   color: #e6f0ff;
 }
 
@@ -88,7 +88,7 @@
 }
 
 :host-context([data-theme="light"]) .col-title {
-  color: #111;
+  color: #143D59;
 }
 
 .col-underline {
@@ -102,7 +102,7 @@
 }
 
 :host-context([data-theme="light"]) .col-underline {
-  background: #f97316;
+  background: #16a34a;
   opacity: 1;
 }
 
@@ -114,7 +114,7 @@
 }
 
 :host-context([data-theme="light"]) .col-subtitle {
-  color: #111;
+  color: #143D59;
 }
 
 .col-text {
@@ -188,8 +188,8 @@
 
 .tech-pill {
   padding: 2px 8px;
-  border: 1px solid #f97316;
-  color: #f97316;
+  border: 1px solid #16a34a;
+  color: #16a34a;
   font-size: 0.75rem;
   border-radius: 4px;
 }
@@ -197,7 +197,7 @@
 .project-link {
   display: inline-block;
   margin-top: 0.5rem;
-  color: #f97316;
+  color: #16a34a;
   font-size: 0.8rem;
 }
 

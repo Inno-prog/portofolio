@@ -7,11 +7,11 @@
 }
 
 :root {
-  --brand: #F6C84C;
-  --brand-600: #E0B43C;
-  --bg: #0F0F1A;
+  --brand: #16a34a;
+  --brand-600: #16a34a;
+  --bg: #143D59;
   --muted: #e2e8f0;
-  --page-bg: #0b1630; /* dark default */
+  --page-bg: #143D59; /* dark default */
   --text: #e6f0ff;
 }
 
@@ -25,12 +25,12 @@ body {
 
 /* Light theme variables applied when data-theme="light" on documentElement */
 :root[data-theme="light"] {
-  --brand: #0b5fff;
+  --brand: #143D59;
   --brand-600: #0845cc;
   --bg: #ffffff;
   --muted: #222831;
   --page-bg: #ffffff;
-  --text: #0b1630;
+  --text: #143D59;
 }
 
 /* Prevent background scroll when mobile menu is open */
@@ -43,7 +43,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F0F1A;
+  background: #143D59;
 }
 ::-webkit-scrollbar-thumb {
   background: var(--brand-600);
@@ -59,7 +59,7 @@ body {
 
 .gradient-border {
   border: 1px solid transparent;
-  background: linear-gradient(#1A1A2E, #1A1A2E) padding-box,
+  background: linear-gradient(#143D59, #143D59) padding-box,
               linear-gradient(135deg, var(--brand), var(--brand-600)) border-box;
 }
 

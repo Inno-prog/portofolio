@@ -4,7 +4,7 @@
 
 :host-context([data-theme="dark"]) .page-layout,
 :host-context([data-theme="dark"]) .page-col {
-  background: #0b1630 !important;
+  background: #143D59 !important;
   color: #e6f0ff;
 }
 
@@ -49,9 +49,9 @@
 .page-col:last-child { border-right: none; }
 
 .col-title { font-size: 1.4rem; font-weight: 700; color: #ffffff; margin-bottom: 0.5rem; }
-:host-context([data-theme="light"]) .col-title { color: #111; }
+:host-context([data-theme="light"]) .col-title { color: #143D59; }
 .col-underline { width: 2rem; height: 3px; background: #ffffff; opacity:0.12; margin-bottom: 1.5rem; }
-:host-context([data-theme="light"]) .col-underline { background: #f97316; opacity: 1; }
+:host-context([data-theme="light"]) .col-underline { background: #16a34a; opacity: 1; }
 .col-text { font-size: 0.85rem; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 1.5rem; }
 :host-context([data-theme="light"]) .col-text { color: #555; }
 
@@ -81,14 +81,14 @@
 .contact-card:hover {
   transform: translateX(8px);
   background: rgba(255,255,255,0.05);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(20,61,89,0.15);
 }
 
 .contact-icon-wrapper {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #f97316, #ff6600);
+  background: linear-gradient(135deg, #16a34a, #16a34a);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +155,7 @@
   font-size: 0.875rem;
   outline: none;
   background: #fff;
-  color: #111;
+  color: #143D59;
   transition: border-color 0.2s;
 }
 
@@ -168,12 +168,12 @@
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #f97316;
+  border-color: #16a34a;
 }
 
 .contact-form button {
   padding: 0.8rem 1.5rem;
-  background: linear-gradient(135deg, #f97316, #ff6600);
+  background: linear-gradient(135deg, #16a34a, #16a34a);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -214,14 +214,14 @@
 .social-card:hover {
   transform: translateX(8px);
   background: rgba(255,255,255,0.05);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px rgba(20,61,89,0.15);
 }
 
 .social-icon-wrapper {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #0b5fff, #00d9f5);
+  background: linear-gradient(135deg, #143D59, #143D59);
   display: flex;
   align-items: center;
   justify-content: center;

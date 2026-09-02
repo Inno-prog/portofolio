@@ -1,4 +1,4 @@
-<section class="relative overflow-hidden bg-[#0a0a14] min-h-screen">
+<section class="relative overflow-hidden bg-[#0a0a14] min-h-[78vh]">
 
   <!-- EAU REELLE des deux côtés -->
   <div class="water-container">
@@ -7,13 +7,13 @@
   </div>
 
   <!-- Image fond : natural-size centered, don't upscale -->
-  <img data-hero-bg 
-       src="assets/photo.png" 
-       alt="Photo d'Innocent DEMBELE - Développeur Full Stack Angular, Spring Boot, Flutter, Burkina Faso" 
-       title="Innocent DEMBELE - Développeur Full Stack Web et Mobile"
-       loading="eager"
-       fetchpriority="high"
-       class="hero-bg-img z-0">
+   <img data-hero-bg 
+        src="assets/photo.jpeg" 
+        alt="Photo d'Innocent DEMBELE - Développeur Full Stack Angular, Spring Boot, Flutter, Burkina Faso" 
+        title="Innocent DEMBELE - Développeur Full Stack Web et Mobile"
+        loading="eager"
+        fetchpriority="high"
+        class="hero-bg-img z-0">
 
   <!-- Overlay sombre -->
   <div class="absolute inset-0 z-0 hero-overlay" style="background: rgba(10,10,20,0.65);"></div>
@@ -22,7 +22,7 @@
   <canvas id="starsCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
 
   <!-- Contenu pyramide (texte fourni par l'utilisateur) -->
-  <div class="relative z-20 h-full flex flex-col items-center justify-end py-40 px-6 text-center">
+  <div class="relative z-20 h-full flex flex-col items-center justify-center py-12 px-6 text-center">
 
   <!-- VAGUES PISCINE (sans fond, juste les ondulations) -->
   <canvas id="waveCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
@@ -122,8 +122,24 @@
      <div class="hero-banner">
          <div class="hero-banner-box anim-fade-in" [animateOnScroll]="'anim-fade-in-show'">
           <p class="banner-title anim-fade-down" [animateOnScroll]="'anim-fade-down-show'">{{ i18n.t('hero_greeting') }} <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">DEMBELE Innocode</span>, {{ i18n.t('hero_role') }}. Pour tous vos projets, <span class="accent anim-bounce-in" [animateOnScroll]="'anim-bounce-in-show'">{{ i18n.t('hero_contact_cta') }}</span></p>
+      </div>
+
+      <!-- Rotating service circle -->
+      <div class="hero-service-circle-wrap">
+        <div class="hero-service-circle" [style.transform]="'rotate(' + circleRotation + 'deg)'">
+          @for (service of services; track $index) {
+            <span class="hero-service-circle-item"
+                  [class.hero-service-highlighted]="highlightedIndex === $index"
+                  [style.transform]="'rotate(' + ($index * 90) + 'deg) translateX(120px) rotate(-' + circleRotation + 'deg)'"
+                  [style.opacity]="$index < visibleCount ? 1 : 0"
+                  [style.transition]="'opacity 0.6s ease-out, color 0.5s ease-in-out'">
+              {{ service }}
+            </span>
+          }
         </div>
-     </div>
+        <div class="hero-service-center-dot"></div>
+      </div>
+    </div>
    </div>
 
   <!-- SCRIPTS -->

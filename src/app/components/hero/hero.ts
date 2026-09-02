@@ -12,6 +12,13 @@ import { I18nService } from '../../services/i18n.service';
 })
 export class Hero implements AfterViewInit, OnDestroy {
   private animId = 0;
+  services = ['Codage', 'Installation', 'Activation', 'Maintenance'];
+  visibleCount = 0;
+  highlightedIndex = -1;
+  circleRotation = 0;
+  private highlightTimer?: number;
+  private loopTimer?: number;
+  private spinTimer?: number;
 
   constructor(private router: Router, public i18n: I18nService) {}
 
@@ -20,6 +27,9 @@ export class Hero implements AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
+    this.startServiceAnimation();
+    this.startSpin();
+
     const canvas = document.getElementById('starsCanvas') as HTMLCanvasElement;
     if (!canvas) return;
     const ctx = canvas.getContext('2d')!;
@@ -38,9 +48,7 @@ export class Hero implements AfterViewInit, OnDestroy {
       tail: Math.random() * 8 + 3,
     }));
 
-    // persistent trails: fade previous frame slightly instead of clearing
     const animate = () => {
-      // fade previous frame to create continuous trails
       ctx.globalCompositeOperation = 'destination-out';
       ctx.fillStyle = 'rgba(0,0,0,0.06)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -64,5 +72,48 @@ export class Hero implements AfterViewInit, OnDestroy {
     animate();
   }
 
-  ngOnDestroy() { cancelAnimationFrame(this.animId); }
+  private startSpin() {
+    const step = () => {
+      this.circleRotation = (this.circleRotation + 0.15) % 360;
+      this.spinTimer = window.setTimeout(step, 16);
+    };
+    step();
+  }
+
+  private startServiceAnimation() {
+    const services = this.services;
+
+    services.forEach((_, index) => {
+      this.highlightTimer = window.setTimeout(() => {
+        this.visibleCount = index + 1;
+      }, 600 + index * 400);
+    });
+
+    const initialRevealDuration = 600 + services.length * 400 + 500;
+    this.loopTimer = window.setTimeout(() => {
+      this.startHighlightLoop();
+    }, initialRevealDuration);
+  }
+
+  private startHighlightLoop() {
+    let currentHighlight = 0;
+
+    const runLoop = () => {
+      this.highlightedIndex = currentHighlight;
+
+      this.loopTimer = window.setTimeout(() => {
+        currentHighlight = (currentHighlight + 1) % this.services.length;
+        runLoop();
+      }, 1500);
+    };
+
+    runLoop();
+  }
+
+  ngOnDestroy() {
+    cancelAnimationFrame(this.animId);
+    if (this.highlightTimer) clearTimeout(this.highlightTimer);
+    if (this.loopTimer) clearTimeout(this.loopTimer);
+    if (this.spinTimer) clearTimeout(this.spinTimer);
+  }
 }

@@ -2,7 +2,7 @@
   <div class="nav-inner">
 
     <!-- LOGO tout à gauche, seul -->
-    <div class="nav-brand" (click)="handleClick({label:'Accueil', route:'/'})">
+    <div class="nav-brand" (click)="handleClick({label:'Accueil', sectionId:'home'})">
       <img src="assets/innocode-logo.png" alt="InnoCode" class="brand-logo-img" />
     </div>
 
@@ -13,12 +13,12 @@
           <button
             (click)="handleClick(link)"
             class="nav-link"
-            [class.active-link]="isActiveRoute(link.route)"
+            [class.active-link]="isActiveSection(link.sectionId)"
           >{{ i18n.t(link.labelKey || 'nav_portfolio') }}</button>
         }
       </div>
 
-      <button class="nav-photo" (click)="handleClick({label:'Accueil', route:'/'})">
+      <button class="nav-photo" (click)="handleClick({label:'Accueil', sectionId:'home'})">
         <div class="photo-ring">
           <img src="assets/photo.jpeg" alt="Accueil">
         </div>
@@ -26,7 +26,7 @@
 
       <div class="nav-links-right">
         @for (link of rightLinks; track link.labelKey) {
-          <button (click)="handleClick(link)" class="nav-link" [class.active-link]="isActiveRoute(link.route)">{{ i18n.t(link.labelKey || 'nav_services') }}</button>
+          <button (click)="handleClick(link)" class="nav-link" [class.active-link]="isActiveSection(link.sectionId)">{{ i18n.t(link.labelKey || 'nav_services') }}</button>
         }
       </div>
     </div>
@@ -59,7 +59,7 @@
       @if (mobileOpen) {
     <div class="mobile-menu">
       @for (link of allLinks; track link.labelKey) {
-  <button (click)="handleClick(link)" class="mobile-link" [class.active-link]="isActiveRoute(link.route)">{{ i18n.t(link.labelKey || 'nav_portfolio') }}</button>
+  <button (click)="handleClick(link)" class="mobile-link" [class.active-link]="isActiveSection(link.sectionId)">{{ i18n.t(link.labelKey || 'nav_portfolio') }}</button>
       }
 
     </div>

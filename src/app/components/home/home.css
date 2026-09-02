@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+/*
+ * Empilage des sections sur la home : on neutralise uniquement le
+ * min-height: 100vh et le padding-top qui servaient quand chaque
+ * section était une page standalone. Aucun autre style n'est touché.
+ */
+:host ::ng-deep app-about .page-layout,
+:host ::ng-deep app-services .services-page,
+:host ::ng-deep app-experience .page-layout,
+:host ::ng-deep app-projects .page-layout,
+:host ::ng-deep app-contact .page-layout {
+  min-height: auto;
+  padding-top: 1rem;
+}

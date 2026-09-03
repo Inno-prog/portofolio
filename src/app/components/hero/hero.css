@@ -142,7 +142,7 @@
 }
 
 .lottie-stars { position:absolute; inset:0; z-index:5; pointer-events:none; }
-.lottie-water { position:absolute; top:0; bottom:0; width:12%; z-index:6; pointer-events:none; }
+.lottie-water { position:absolute; top:0; bottom:0; width:12%; z-index:6; pointer-events:none; filter: drop-shadow(0 0 8px rgba(255,255,255,0.35)) brightness(1.15); }
 .lottie-water.left { left:0; }
 .lottie-water.right { right:0; }
 .banner-title { color: #fff; font-size: 18px; font-weight:500; margin:0 0 8px 0; text-align:center; }
@@ -201,18 +201,19 @@
 .banner-title .accent { color: #16a34a; font-weight:800; }
 
 /* Waterfall decorative panels on both sides */
-.water-fall { position: absolute; top: 0; bottom: 0; width: 10%; pointer-events: none; z-index: 3; opacity: 0.85; }
-.water-fall.left { left: 0; background-image: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); clip-path: polygon(0 0, 100% 4%, 70% 100%, 0% 100%); }
-.water-fall.right { right: 0; background-image: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); clip-path: polygon(30% 4%, 100% 0, 100% 100%, 0 100%); }
+.water-fall { position: absolute; top: 0; bottom: 0; width: 12%; pointer-events: none; z-index: 3; opacity: 1; }
+.water-fall.left { left: 0; background-image: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06)); clip-path: polygon(0 0, 100% 4%, 70% 100%, 0% 100%); }
+.water-fall.right { right: 0; background-image: linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06)); clip-path: polygon(30% 4%, 100% 0, 100% 100%, 0 100%); }
 
 /* flow animation using repeating linear gradient */
 .water-fall::before {
   content: '';
   position: absolute; inset:0;
-  background-image: linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.02) 30%, rgba(255,255,255,0.08) 60%);
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.10) 30%, rgba(255,255,255,0.25) 60%, rgba(255,255,255,0.08) 100%);
   background-size: 100% 200%;
-  animation: flowDown 4s linear infinite;
-  opacity: 0.9;
+  animation: flowDown 3s linear infinite;
+  opacity: 1;
+  filter: blur(0.5px);
 }
 
 @keyframes flowDown {
@@ -281,7 +282,32 @@
   }
 }
 
-/* Slightly reduce overlay on small screens so face shows through more */
+/* Effet sombre sur l'image de fond pour le mobile */
+@media (max-width: 767px) {
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 10, 20, 0.55) 0%,
+      rgba(5, 10, 20, 0.65) 55%,
+      rgba(5, 10, 20, 0.78) 100%
+    ) !important;
+  }
+  .hero-bg-img {
+    filter: brightness(0.75) contrast(1.05);
+  }
+}
+
+/* Petit écran : garder le voile sombre sur l'image de fond */
 @media (max-width: 420px) {
-  .hero-overlay { background: #ceced347 !important; }
+  .hero-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(5, 10, 20, 0.6) 0%,
+      rgba(5, 10, 20, 0.72) 55%,
+      rgba(5, 10, 20, 0.82) 100%
+    ) !important;
+  }
+  .hero-bg-img {
+    filter: brightness(0.7) contrast(1.05);
+  }
 }

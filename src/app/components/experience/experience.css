@@ -68,6 +68,7 @@
 .controls button.active { background: rgba(255,255,255,0.04); }
 .controls .lang-switch button { min-width:38px; }
 .controls .theme-switch button { min-width:58px; }
+.controls { justify-content: flex-end; padding: 0.4rem 2rem 0 2rem; }
 
 :host-context([data-theme="light"]) .controls button { color: #333; border:1px solid #d1d5db; }
 :host-context([data-theme="light"]) .controls button.active { background: #e5e7eb; }
@@ -280,7 +281,7 @@
 
   /* Centrer la palette (langue / thème) sur mobile au lieu de la coller au bord */
   .controls {
-    justify-content: center !important;
-    padding: 0.4rem 1rem 0 1rem !important;
+    justify-content: center;
+    padding: 0.4rem 1rem 0 1rem;
   }
 }

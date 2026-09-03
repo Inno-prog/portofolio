@@ -2,7 +2,7 @@
   <div class="page-cols">
 
     <!-- Top controls: langue / thème -->
-    <div class="controls" style="grid-column:1/-1;display:flex;justify-content:flex-end;gap:0.6rem;padding:0.4rem 2rem 0 2rem;align-items:center;">
+    <div class="controls" style="grid-column:1/-1;display:flex;gap:0.6rem;align-items:center;">
       <div class="lang-switch">
         <button (click)="i18n.setLang('fr')" [class.active]="i18n.lang==='fr'">{{ i18n.t('fr') }}</button>
         <button (click)="i18n.setLang('en')" [class.active]="i18n.lang==='en'">{{ i18n.t('en') }}</button>

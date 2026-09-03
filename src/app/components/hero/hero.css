@@ -249,6 +249,35 @@
     transform: none;
     padding-bottom: 3rem;
     margin-top: 0;
+    /* Remplir la hauteur du hero (72vh) et pousser la palette vers le bas,
+       sans changer la taille du hero mobile. */
+    min-height: 72vh;
+    justify-content: flex-end;
+  }
+
+  /* Sur mobile : centrer le bloc texte et l'adapter à l'écran (supprimer la
+     marge droite de 400px qui le poussait hors champ et le masquait). */
+  .hero-banner {
+    justify-content: center;
+    padding: 2.5rem 0.5rem;
+  }
+  .hero-banner-box {
+    /* Ramener la palette vers le centre : marges latérales égales,
+       pas de débordement hors écran sur mobile. */
+    margin: 0.75rem auto 0;
+    max-width: min(92%, 640px);
+    transform: translateX(-4px); /* léger décalage vers la gauche pour rester bien visible */
+  }
+}
+
+@media (max-width: 420px) {
+  .hero-banner {
+    padding: 2.5rem 0.25rem;
+  }
+  .hero-banner-box {
+    max-width: 96%;
+    transform: translateX(-2px);
+    margin: 0.5rem auto 0;
   }
 }
 

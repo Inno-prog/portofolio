@@ -38,6 +38,8 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       SPRING_JPA_SHOW_SQL: "false"
+      MAIL_USERNAME: dembeleinnocent440@gmail.com
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
     restart: on-failure
 
   # Angular Frontend

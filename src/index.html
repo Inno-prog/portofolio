@@ -105,7 +105,21 @@
   <style>
     app-root { opacity: 0; display: flex; flex-direction: column; height: 100%; }
     app-root.loaded { opacity: 1; transition: opacity 0.2s ease-in; }
+    * { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    img { -webkit-user-drag: none; user-drag: none; pointer-events: none; }
   </style>
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('copy', e => { e.preventDefault(); alert('© Innocent DEMBELE — Copie interdite.'); });
+    document.addEventListener('cut', e => e.preventDefault());
+    document.addEventListener('paste', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey && ['u','s','p','c','x','a'].includes(e.key.toLowerCase())) ||
+          e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase()))) {
+        e.preventDefault(); return false;
+      }
+    });
+  </script>
 </head>
 <body class="h-full">
   <app-root></app-root>

@@ -1,19 +1,13 @@
 User-agent: *
+Disallow: /
+
+User-agent: Googlebot
 Allow: /
 
-# Pages importantes pour le SEO
-Allow: /photo-innocent-dembele.html
-Allow: /dembele-innocent.html
-Allow: /services-dembele-innocent.html
-Allow: /assets/photo.png
-Allow: /assets/photo.jpeg
+User-agent: Bingbot
+Allow: /
 
-# Images importantes
-Allow: /assets/*.png
-Allow: /assets/*.jpg
-Allow: /assets/*.jpeg
+User-agent: Applebot
+Allow: /
 
 Sitemap: https://portofolio-eta-azure.vercel.app/sitemap.xml
-
-# Optimisation pour DEMBELE Innocent
-# Développeur web/mobile - IBAM Burkina

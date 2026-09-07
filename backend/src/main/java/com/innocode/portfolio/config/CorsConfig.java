@@ -14,7 +14,14 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:4200", "http://localhost:8080", "https://innocode-portfolio.vercel.app", "https://innocode-dembele.vercel.app")
+                        .allowedOrigins(
+                            "http://localhost:4200",
+                            "http://localhost:8080",
+                            "https://portofolio-eta-azure.vercel.app",
+                            "https://innocode-portfolio.vercel.app",
+                            "https://innocode-dembele.vercel.app"
+                        )
+                        .allowedOriginPatterns("https://*.vercel.app", "https://*.github.io", "https://*.github.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
                         .allowCredentials(true);

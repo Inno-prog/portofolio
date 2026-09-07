@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Project, Experience, ContactMessage } from '../models/portfolio.models';
+import { Project, Experience, ServiceItem, ContactMessage } from '../models/portfolio.models';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PortfolioService {
-  // Use relative API URL - works in both dev and production
-  private apiUrl = '/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -16,6 +16,10 @@ export class PortfolioService {
 
   getExperiences(): Observable<Experience[]> {
     return this.http.get<Experience[]>(`${this.apiUrl}/experiences`);
+  }
+
+  getServices(): Observable<ServiceItem[]> {
+    return this.http.get<ServiceItem[]>(`${this.apiUrl}/services`);
   }
 
   sendContact(message: ContactMessage): Observable<{ success: boolean; message: string }> {

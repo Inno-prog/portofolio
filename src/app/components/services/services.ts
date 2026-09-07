@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 import { I18nService } from '../../services/i18n.service';
+import { PortfolioService } from '../../services/portfolio';
+import { ServiceItem } from '../../models/portfolio.models';
 
 @Component({
   selector: 'app-services',
@@ -10,13 +12,15 @@ import { I18nService } from '../../services/i18n.service';
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
-export class Services {
-  constructor(public i18n: I18nService) {}
-  services = [
+export class Services implements OnInit {
+  loading = true;
+  apiServices: ServiceItem[] = [];
+
+  private staticServices = [
     {
       titleKey: 'service_poster_title',
       descKey: 'service_poster_desc',
-      image: "assets/création d'affiche.png",
+      image: 'assets/création d\'affiche.png',
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="8" y="6" width="32" height="36" rx="3" stroke="#16a34a" stroke-width="2"/>
         <path d="M14 16h20M14 22h14M14 28h18" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
@@ -27,7 +31,7 @@ export class Services {
     {
       titleKey: 'service_install_title',
       descKey: 'service_install_desc',
-      image: "assets/installation de logiciel.png",
+      image: 'assets/installation de logiciel.png',
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="10" width="36" height="24" rx="3" stroke="#16a34a" stroke-width="2"/>
         <path d="M16 34v4M32 34v4M12 38h24" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
@@ -37,7 +41,7 @@ export class Services {
     {
       titleKey: 'service_updates_title',
       descKey: 'service_updates_desc',
-      image: "assets/mises à jour de pilote.png",
+      image: 'assets/mises à jour de pilote.png',
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="14" stroke="#16a34a" stroke-width="2"/>
         <circle cx="24" cy="24" r="4" fill="#16a34a"/>
@@ -48,7 +52,7 @@ export class Services {
     {
       titleKey: 'service_ppt_title',
       descKey: 'service_ppt_desc',
-      image: "assets/création de powerpoint.png",
+      image: 'assets/création de powerpoint.png',
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="6" y="8" width="36" height="26" rx="3" stroke="#16a34a" stroke-width="2"/>
         <path d="M18 34v6M30 34v6M12 40h24" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
@@ -71,11 +75,36 @@ export class Services {
     {
       titleKey: 'service_dev_title',
       descKey: 'service_dev_desc',
-      image: "assets/développement d'application.png",
+      image: 'assets/développement d\'application.png',
       svg: `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="24" cy="24" r="16" stroke="#16a34a" stroke-width="2"/>
         <path d="M8 24h32M24 8c-4 4-6 10-6 16s2 12 6 16M24 8c4 4 6 10 6 16s-2 12-6 16" stroke="#16a34a" stroke-width="1.5"/>
       </svg>`,
     },
   ];
+
+  constructor(public i18n: I18nService, private portfolio: PortfolioService) {}
+
+  ngOnInit() {
+    this.portfolio.getServices().subscribe({
+      next: (services) => {
+        this.apiServices = services;
+        this.loading = false;
+      },
+      error: () => {
+        this.apiServices = [];
+        this.loading = false;
+      }
+    });
+  }
+
+  get displayServices() {
+    return this.staticServices.map((s, i) => ({
+      title: this.i18n.t(s.titleKey),
+      desc: this.i18n.t(s.descKey),
+      image: s.image,
+      svg: s.svg,
+      isAlt: i % 2 === 1
+    }));
+  }
 }

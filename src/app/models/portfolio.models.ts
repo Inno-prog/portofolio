@@ -20,6 +20,15 @@ export interface Experience {
   technologies: string[];
 }
 
+export interface ServiceItem {
+  id?: number;
+  icon: string;
+  title: string;
+  description: string;
+  tags: string[];
+  order?: number;
+}
+
 export interface ContactMessage {
   name: string;
   email: string;

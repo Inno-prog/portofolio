@@ -25,9 +25,11 @@
                 }
               </div>
               <div class="project-actions">
-                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
-                  <span class="material-symbols-outlined">visibility</span> Demo
-                </a>
+                @if (project.url) {
+                  <a class="project-btn" [href]="project.url" target="_blank" rel="noopener">
+                    <span class="material-symbols-outlined">visibility</span> Demo
+                  </a>
+                }
                 <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
                   <span class="material-symbols-outlined">code</span> GitHub
                 </a>
@@ -66,9 +68,11 @@
                 }
               </div>
               <div class="project-actions">
-                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
-                  <span class="material-symbols-outlined">visibility</span> Demo
-                </a>
+                @if (project.url) {
+                  <a class="project-btn" [href]="project.url" target="_blank" rel="noopener">
+                    <span class="material-symbols-outlined">visibility</span> Demo
+                  </a>
+                }
                 <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
                   <span class="material-symbols-outlined">code</span> GitHub
                 </a>
@@ -103,9 +107,11 @@
                 }
               </div>
               <div class="project-actions">
-                <a class="project-btn" [href]="project.url || project.github" target="_blank" rel="noopener">
-                  <span class="material-symbols-outlined">visibility</span> Demo
-                </a>
+                @if (project.url) {
+                  <a class="project-btn" [href]="project.url" target="_blank" rel="noopener">
+                    <span class="material-symbols-outlined">visibility</span> Demo
+                  </a>
+                }
                 <a class="project-btn" [href]="project.github" target="_blank" rel="noopener">
                   <span class="material-symbols-outlined">code</span> GitHub
                 </a>

@@ -17,6 +17,20 @@
 .page-layout {
   min-height: 100vh;
   padding-top: 74px;
+  padding-bottom: 3rem;
+  position: relative;
+}
+
+.page-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, #16a34a, #143D59);
+  border-radius: 0 0 8px 8px;
 }
 
 .page-cols {
@@ -81,10 +95,29 @@
 }
 
 .col-title {
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: #ffffff;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  display: inline-block;
+}
+
+.col-title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #16a34a, transparent);
+  transition: width 0.4s ease;
+}
+
+.page-col:hover .col-title::after {
+  width: 80%;
 }
 
 :host-context([data-theme="light"]) .col-title {
@@ -92,13 +125,15 @@
 }
 
 .col-underline {
-  width: 2rem;
+  width: 3rem;
   height: 3px;
-  background: #ffffff;
-  opacity: 0.12;
+  background: #16a34a;
+  opacity: 0.8;
   margin-bottom: 1.5rem;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(22, 163, 74, 0.4);
 }
 
 :host-context([data-theme="light"]) .col-underline {
@@ -134,26 +169,45 @@
   max-width: 420px;
   text-align: center;
   background: #fff;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(20, 61, 89, 0.15);
-  transition: box-shadow 0.25s, transform 0.3s;
+  box-shadow: 0 10px 30px rgba(20, 61, 89, 0.18), 0 2px 6px rgba(20, 61, 89, 0.08);
+  transition: box-shadow 0.3s, transform 0.3s;
+  border: 1px solid rgba(22, 163, 74, 0.1);
 }
 
 .project-card:hover {
-  box-shadow: 0 16px 40px rgba(20, 61, 89, 0.22);
-  transform: scale(1.01);
+  box-shadow: 0 20px 50px rgba(20, 61, 89, 0.28), 0 0 0 2px rgba(22, 163, 74, 0.3);
+  transform: translateY(-4px) scale(1.01);
 }
 
 /* Card header : bandeau coloré faso-app */
 .project-card-header {
-  background: #143D59;
-  padding: 14px 20px;
+  background: linear-gradient(135deg, #143D59 0%, #1e5577 100%);
+  padding: 16px 20px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 100%;
+  background: rgba(22, 163, 74, 0.1);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .project-card-header.header-alt {
-  background: #16a34a;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+}
+
+.project-card-header.header-alt::before {
+  background: rgba(255, 255, 255, 0.08);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }
 
 .project-card-title {
@@ -246,15 +300,16 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.55rem 1rem;
+  padding: 0.6rem 1.1rem;
   border-radius: 28px;
   font-size: 0.8rem;
   font-weight: 600;
   text-decoration: none;
   color: #143D59;
-  background: transparent;
+  background: #fff;
   border: 1px solid rgba(20, 61, 89, 0.22);
-  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(20, 61, 89, 0.08);
 }
 
 .project-btn .material-symbols-outlined {
@@ -263,9 +318,11 @@
 }
 
 .project-btn:hover {
-  background: rgba(22, 163, 74, 0.05);
-  border-color: rgba(22, 163, 74, 0.28);
-  transform: translateY(-1px);
+  background: #16a34a;
+  border-color: #16a34a;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(22, 163, 74, 0.35);
 }
 
 /* ── MOBILE ── */

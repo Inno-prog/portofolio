@@ -1,4 +1,4 @@
-name: Deploy Frontend & Backend
+name: Deploy Frontend
 
 on:
   push:
@@ -30,41 +30,3 @@ jobs:
           vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
           vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
           vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-  deploy-backend-render:
-    needs: deploy-frontend
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Trigger Render deploy
-        run: |
-          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys" \
-            -H "Authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
-            -H "Content-Type: application/json" \
-            -d '{
-              "clearCache": "clear",
-              "envVars": [
-                { "key": "MAIL_USERNAME", "value": "dembeleinnocent440@gmail.com" },
-                { "key": "MAIL_PASSWORD", "value": "${{ secrets.MAIL_PASSWORD }}" }
-              ]
-            }'
-
-  deploy-backend-railway:
-    needs: deploy-frontend
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Deploy to Railway
-        uses: railwayapp/railway-action@v1
-        with:
-          railway-token: ${{ secrets.RAILWAY_TOKEN }}
-          service: ${{ secrets.RAILWAY_SERVICE_ID }}
-        env:
-          MAIL_USERNAME: dembeleinnocent440@gmail.com
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}

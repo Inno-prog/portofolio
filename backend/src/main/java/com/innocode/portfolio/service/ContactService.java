@@ -18,13 +18,11 @@ public class ContactService {
     private final ContactMessageRepository contactMessageRepository;
     private final JavaMailSender mailSender;
 
-    @Value("${spring.mail.username}")
-    private String mailUsername;
-
     @Value("${app.contact.to}")
     private String contactToEmail;
 
     public void save(ContactRequest request) {
+        // Save to database
         ContactMessage msg = new ContactMessage();
         msg.setName(request.getName());
         msg.setEmail(request.getEmail());
@@ -32,6 +30,7 @@ public class ContactService {
         msg.setMessage(request.getMessage());
         contactMessageRepository.save(msg);
 
+        // Send email notification
         sendEmailNotification(request);
     }
 
@@ -39,7 +38,7 @@ public class ContactService {
         try {
             SimpleMailMessage email = new SimpleMailMessage();
             email.setTo(contactToEmail);
-            email.setFrom(mailUsername);
+            email.setFrom("noreply@innocode.com");
             email.setSubject("Nouveau message de contact: " + (request.getSubject() != null ? request.getSubject() : "Sans sujet"));
             email.setText(
                 "Nouveau message reçu depuis le portfolio:\n\n" +
@@ -48,11 +47,12 @@ public class ContactService {
                 "Sujet: " + (request.getSubject() != null ? request.getSubject() : "Non spécifié") + "\n\n" +
                 "Message:\n" + request.getMessage()
             );
-
+            
             mailSender.send(email);
-            log.info("Email envoye avec succes pour le message de {}", request.getEmail());
+            log.info("Email de notification envoyé avec succès pour le message de {}", request.getEmail());
         } catch (Exception e) {
-            log.error("Erreur lors de l'envoi de l'email: {}", e.getMessage(), e);
+            log.error("Erreur lors de l'envoi de l'email de notification: {}", e.getMessage());
+            // Don't throw - the message is still saved in the database
         }
     }
 }

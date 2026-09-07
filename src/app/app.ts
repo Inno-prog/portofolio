@@ -15,20 +15,10 @@ export class App implements AfterViewInit {
   constructor(private theme: ThemeService) {}
 
   ngAfterViewInit() {
-    try {
-      const root = document.querySelector('app-root');
-      if (root) {
-        root.classList.add('loaded');
-      }
-    } catch (e) {
-      console.warn('[App] failed to add loaded class', e);
-    }
-
+    document.querySelector('app-root')?.classList.add('loaded');
     if (typeof window !== 'undefined' && window.history) {
-      try {
-        window.history.scrollRestoration = 'manual';
-        window.scrollTo({ top: 0, behavior: 'instant' });
-      } catch (e) {}
+      window.history.scrollRestoration = 'manual';
+      window.scrollTo({ top: 0, behavior: 'instant' });
     }
   }
 }

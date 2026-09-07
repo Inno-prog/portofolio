@@ -56,12 +56,7 @@
 
       @if (success()) {
         <div class="alert-success anim-slide-up" [animateOnScroll]="'anim-fade-down-show'">
-          {{ i18n.t('contact_success') }}
-        </div>
-      }
-      @if (error()) {
-        <div class="alert-error anim-slide-up">
-          Une erreur est survenue. Contactez-moi directement sur WhatsApp ou par email.
+{{ i18n.t('contact_success') }}
         </div>
       }
 

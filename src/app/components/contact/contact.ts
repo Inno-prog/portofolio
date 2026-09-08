@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll.directive';
 import { I18nService } from '../../services/i18n.service';
-import { PortfolioService } from '../../services/portfolio';
 
 @Component({
   selector: 'app-contact',
@@ -12,11 +12,12 @@ import { PortfolioService } from '../../services/portfolio';
   styleUrl: './contact.css',
 })
 export class Contact {
-  constructor(public i18n: I18nService, private portfolio: PortfolioService) {}
+  constructor(public i18n: I18nService, private http: HttpClient) {}
 
   form = { name: '', email: '', subject: '', message: '' };
   sending = signal(false);
   success = signal(false);
+  error = signal(false);
 
   socials = [
     { icon: '🐙', label: 'GitHub', desc: 'github.com/Inno-prog', url: 'https://github.com/Inno-prog' },
@@ -28,7 +29,9 @@ export class Contact {
   onSubmit() {
     if (!this.form.name || !this.form.email || !this.form.message) return;
     this.sending.set(true);
-    this.portfolio.sendContact(this.form).subscribe({
+    this.error.set(false);
+
+    this.http.post('/api/contact', this.form).subscribe({
       next: () => {
         this.success.set(true);
         this.sending.set(false);
@@ -36,8 +39,10 @@ export class Contact {
         setTimeout(() => this.success.set(false), 4000);
       },
       error: () => {
+        this.error.set(true);
         this.sending.set(false);
-      }
+        setTimeout(() => this.error.set(false), 4000);
+      },
     });
   }
 }

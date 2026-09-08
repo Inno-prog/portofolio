@@ -2,7 +2,16 @@
   "version": 2,
   "buildCommand": "npm run build:prod",
   "outputDirectory": "dist/portofolio/browser",
+  "functions": {
+    "api/contact.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
   "routes": [
+    {
+      "src": "/api/contact",
+      "dest": "/api/contact.js"
+    },
     {
       "src": "/sitemap.xml",
       "dest": "/sitemap.xml"

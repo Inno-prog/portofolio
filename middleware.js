@@ -1,6 +1,6 @@
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|assets/|sitemap.xml|robots.txt).*)',
+    '/((?!_next/static|_next/image|favicon.ico|assets/|sitemap.xml|robots.txt|api/).*)',
   ],
 };
 
@@ -41,10 +41,15 @@ function isScraper(userAgent) {
 
 function hasNoAcceptHeader(request) {
   const accept = request.headers.get('accept') || '';
+  const contentType = request.headers.get('content-type') || '';
+  if (contentType.includes('application/json')) return false;
   return !accept.includes('text/html') && !accept.includes('application/xhtml') && !accept.includes('*/*');
 }
 
 export default function middleware(request) {
+  const { pathname } = new URL(request.url);
+  if (pathname.startsWith('/api/')) return new Response(null, { status: 200 });
+
   const userAgent = request.headers.get('user-agent') || '';
   const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
 
